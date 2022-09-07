@@ -1,0 +1,69 @@
+{
+  "name": "excel",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^13.5.0",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "npm run stylelint && npm run prettier && npm run eslint && INLINE_RUNTIME_CHUNK=false react-scripts build ",
+    "clean": "(rm -rf build || :) && (rm -rf node_modules/* || :)",
+    "test": "MOCKS_ENABLED=true react-scripts test",
+    "test:coverage": "MOCKS_ENABLED=true npm test -- --coverage --watchAll=false",
+    "eject": "react-scripts eject",
+    "jest": "react-scripts test --watchAll=false",
+    "stylelint": "stylelint \"**/*.scss\"",
+    "prettier": "prettier --check . --ignore-path ./.prettierignore",
+    "eslint": "eslint \"**/*.{js,jsx}\" --ignore-path ./.eslintignore",
+    "stylelint-fix": "stylelint --fix \"**/*.scss\"",
+    "prettier-fix": "prettier . --write --ignore-path ./.prettierignore",
+    "eslint-fix": "eslint \"**/*.{js,jsx}\" --fix --ignore-path ./.eslintignore",
+    "freshinstall": "npm run clean && npm i",
+    "pretest": "npm run prettier && npm run stylelint && npm run eslint",
+    "cypress": "cypress open",
+    "cypress:all": "cypress run"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@zarconontol/enzyme-adapter-react-18": "^0.7.3",
+    "enzyme": "^3.11.0",
+    "eslint": "^8.23.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-only-warn": "^1.0.3",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.4",
+    "node-sass": "^7.0.1",
+    "prettier": "^2.7.1",
+    "stylelint": "^14.11.0",
+    "stylelint-config-standard": "^28.0.0"
+  }
+}

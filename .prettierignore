@@ -1,0 +1,12 @@
+/build
+.eslintrc
+.prettierrc.js
+.stylelintrc.json
+package-lock.json
+package.json
+public/index.html
+README.md
+/src/__mocks__
+/coverage
+jest.config.json
+csdl/work
