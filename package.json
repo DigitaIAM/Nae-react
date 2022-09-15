@@ -2,6 +2,7 @@
   "name": "excel",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://roxers.github.io/excel",
   "dependencies": {
     "@inovua/reactdatagrid-enterprise": "^4.21.0",
     "@reduxjs/toolkit": "^1.8.5",
