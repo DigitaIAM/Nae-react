@@ -1,13 +1,16 @@
 import React from 'react';
-import { Routes as Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes as Switch, Route, Navigate } from 'react-router-dom';
 import InitPage from './pages/InitPage';
+
+import "antd/dist/antd.css";
+import '@inovua/reactdatagrid-enterprise/index.css';
 import './global/styles/index.scss';
 
 const App = () => {
   return (
-    <Switch>
-      <Route path="*" element={<InitPage />} />
-    </Switch>
+    <Router>
+      <InitPage />
+    </Router>
   );
 };
 
