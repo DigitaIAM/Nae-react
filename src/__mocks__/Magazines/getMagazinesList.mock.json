@@ -1,0 +1,131 @@
+{
+  "status": 200,
+  "data": [
+    {
+      "_id": "qwerty01",
+      "docType": {
+        "_id": "qwerty02",
+        "label": "Заказ"
+      },
+      "date": "2022-09-13",
+      "number": "1",
+      "counterparty": {
+        "company": {
+          "_id": "qwerty03",
+          "label": "Org LLC"
+        },
+        "document": {
+          "_id": "qwerty04",
+          "label": "Договор № 12 от 12.09.2022"
+        }
+      },
+      "goods": [
+        {
+          "_id": "g1",
+          "label": "Стаканчик № 1",
+          "qty": {
+            "number": 10,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": "спросить Васю"
+        }
+      ]
+    },
+    {
+      "_id": "qwerty02",
+      "docType": {
+        "_id": "qwerty02",
+        "label": "Заказ"
+      },
+      "date": "2022-09-13",
+      "number": "1",
+      "counterparty": {
+        "company": {
+          "_id": "qwerty03",
+          "label": "Org LLC"
+        },
+        "document": {
+          "_id": "qwerty04",
+          "label": "Договор № 12 от 12.09.2022"
+        }
+      },
+      "goods": [
+        {
+          "_id": "g1",
+          "label": "Стаканчик № 1",
+          "qty": {
+            "number": 10,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": "спросить Васю"
+        }
+      ]
+    },
+    {
+      "_id": "qwerty03",
+      "docType": {
+        "_id": "qwerty02",
+        "label": "Заказ"
+      },
+      "date": "2022-09-13",
+      "number": "1",
+      "counterparty": {
+        "company": {
+          "_id": "qwerty03",
+          "label": "Org LLC"
+        },
+        "document": {
+          "_id": "qwerty04",
+          "label": "Договор № 12 от 12.09.2022"
+        }
+      },
+      "goods": [
+        {
+          "_id": "g1",
+          "label": "Стаканчик № 1",
+          "qty": {
+            "number": 10,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": "спросить Васю"
+        }
+      ]
+    }
+  ]
+}
