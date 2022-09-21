@@ -3,7 +3,7 @@ import moment from 'moment';
 export const MAGAZINES_PAGE = {
   table: {
     gridStyle: {
-      minHeight: '100vh',
+      minHeight: 'calc(100vh - 160px)',
     },
     groups: [
       {

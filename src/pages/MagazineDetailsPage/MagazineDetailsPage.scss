@@ -1,10 +1,82 @@
+@import 'src/global/styles/colors';
+
 .magazine-page--wrapper {
   width: 100%;
+  padding: 100px 280px;
 
   .document--header {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .document--name {
+    width: 100%;
+    text-align: center;
+  }
+
+  .document--body {
+    width: 100%;
+
+    .body--information {
+      width: 100%;
+      gap: 20px;
+      margin-bottom: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+
+      .information--input {
+        width: 100%;
+        outline: none;
+        border: 1px solid $library-cell--border;
+        padding: 8px;
+        font-size: 14px;
+        line-height: 1.6;
+        transition: .3s;
+
+        &:focus {
+          box-shadow: 0 0 7px #00fff369;
+        }
+
+        &.w-100 {
+          flex: 0 1 100%;
+          max-width: 100%;
+        }
+
+        &.w-50 {
+          flex: 0 1 50%;
+          max-width: 50%;
+        }
+      }
+    }
+
+    .body--data-grid {
+      margin-bottom: 25px;
+    }
+
+    .document--footer {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 25px;
+
+      .footer--btn {
+        flex: 0 1 50%;
+        width: 100%;
+        max-width: 50%;
+        outline: none;
+        border: 1px solid $library-cell--border;
+        background-color: transparent;
+        height: 40px;
+        transition: .3s;
+
+        &:focus {
+          box-shadow: 0 0 7px #00fff369;
+        }
+      }
+    }
   }
 }

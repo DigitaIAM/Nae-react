@@ -2,29 +2,29 @@
   "status": 200,
   "data": [
     {
-      "_id": "qwerty01",
+      "_id": "6324402c886335e1c9bebdbd",
       "docType": {
-        "_id": "qwerty02",
-        "label": "Заказ"
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
       },
-      "date": "2022-09-13",
-      "number": "1",
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
       "counterparty": {
         "company": {
-          "_id": "qwerty03",
-          "label": "Org LLC"
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
         },
         "document": {
-          "_id": "qwerty04",
-          "label": "Договор № 12 от 12.09.2022"
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
         }
       },
       "goods": [
         {
-          "_id": "g1",
-          "label": "Стаканчик № 1",
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
           "qty": {
-            "number": 10,
+            "number": 36,
             "uom": "kg"
           },
           "price": {
@@ -39,34 +39,34 @@
             "number": 20,
             "currency": "$"
           },
-          "note": "спросить Васю"
+          "note": ""
         }
       ]
     },
     {
-      "_id": "qwerty02",
+      "_id": "6324402cc47c2859f251122b",
       "docType": {
-        "_id": "qwerty02",
-        "label": "Заказ"
+        "_id": "6324402cba88f6bb508d6579",
+        "label": "QUANTALIA"
       },
-      "date": "2022-09-13",
-      "number": "1",
+      "date": "2017-10-31T11:08:05",
+      "number": 1,
       "counterparty": {
         "company": {
-          "_id": "qwerty03",
-          "label": "Org LLC"
+          "_id": "6324402cb2eaae5777a4b76a",
+          "label": "PYRAMIS"
         },
         "document": {
-          "_id": "qwerty04",
-          "label": "Договор № 12 от 12.09.2022"
+          "_id": "6324402c68caad14b56efaa9",
+          "label": "BIOSPAN"
         }
       },
       "goods": [
         {
-          "_id": "g1",
-          "label": "Стаканчик № 1",
+          "_id": "6324402c3908088e380758ba",
+          "label": "MUSAPHICS",
           "qty": {
-            "number": 10,
+            "number": 37,
             "uom": "kg"
           },
           "price": {
@@ -81,34 +81,34 @@
             "number": 20,
             "currency": "$"
           },
-          "note": "спросить Васю"
+          "note": ""
         }
       ]
     },
     {
-      "_id": "qwerty03",
+      "_id": "6324402c9243276730450d00",
       "docType": {
-        "_id": "qwerty02",
-        "label": "Заказ"
+        "_id": "6324402ce6b187f2068a3c4e",
+        "label": "ANARCO"
       },
-      "date": "2022-09-13",
-      "number": "1",
+      "date": "2014-07-14T02:06:11",
+      "number": 2,
       "counterparty": {
         "company": {
-          "_id": "qwerty03",
-          "label": "Org LLC"
+          "_id": "6324402cbb497fcbe6eb287e",
+          "label": "SHEPARD"
         },
         "document": {
-          "_id": "qwerty04",
-          "label": "Договор № 12 от 12.09.2022"
+          "_id": "6324402c55ef26fa8818ccf0",
+          "label": "FROLIX"
         }
       },
       "goods": [
         {
-          "_id": "g1",
-          "label": "Стаканчик № 1",
+          "_id": "6324402cd9d49f4d2dd14bc9",
+          "label": "EXTREMO",
           "qty": {
-            "number": 10,
+            "number": 26,
             "uom": "kg"
           },
           "price": {
@@ -123,7 +123,2695 @@
             "number": 20,
             "currency": "$"
           },
-          "note": "спросить Васю"
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c2dcd397d14f5aeac",
+      "docType": {
+        "_id": "6324402c9f3eaffa7847ace4",
+        "label": "VICON"
+      },
+      "date": "2020-03-14T09:41:46",
+      "number": 3,
+      "counterparty": {
+        "company": {
+          "_id": "6324402ce1a20aa850d58c51",
+          "label": "KIGGLE"
+        },
+        "document": {
+          "_id": "6324402c4b47e3c60cf5b1c7",
+          "label": "IMAGINART"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c105d03f7ab572776",
+          "label": "BEDLAM",
+          "qty": {
+            "number": 25,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c6029f36a53769fb0",
+      "docType": {
+        "_id": "6324402c2134ed9eaf3003be",
+        "label": "QUINEX"
+      },
+      "date": "2020-09-13T02:30:06",
+      "number": 4,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c388ee4b28f18bc4f",
+          "label": "NAMEGEN"
+        },
+        "document": {
+          "_id": "6324402c5979805102055f2c",
+          "label": "GRONK"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c218408b52fc93566",
+          "label": "CUBICIDE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402cef8d7ec7e11eea46",
+      "docType": {
+        "_id": "6324402c090da0731ec16934",
+        "label": "MULTRON"
+      },
+      "date": "2021-09-12T04:07:09",
+      "number": 5,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c2ff10ac81849bc38",
+          "label": "GRAINSPOT"
+        },
+        "document": {
+          "_id": "6324402cb93612d0159f9038",
+          "label": "FOSSIEL"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402cca546d853e4ddff9",
+          "label": "XSPORTS",
+          "qty": {
+            "number": 20,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c52923b9b0e43166b",
+      "docType": {
+        "_id": "6324402cae6ab811ac3b7b79",
+        "label": "BUZZNESS"
+      },
+      "date": "2021-01-09T01:40:22",
+      "number": 6,
+      "counterparty": {
+        "company": {
+          "_id": "6324402ca8d5a933acb5fdf3",
+          "label": "EZENT"
+        },
+        "document": {
+          "_id": "6324402cbbfc413160fdb994",
+          "label": "HOTCAKES"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c446c09a4c3a40226",
+          "label": "HAIRPORT",
+          "qty": {
+            "number": 38,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c8150bb84c7dd7200",
+      "docType": {
+        "_id": "6324402c3c75544fdd323382",
+        "label": "VORTEXACO"
+      },
+      "date": "2018-05-26T02:52:29",
+      "number": 7,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c495aa37c04fd8285",
+          "label": "ISOLOGICA"
+        },
+        "document": {
+          "_id": "6324402c30f9c9edd56ab518",
+          "label": "VERBUS"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ce16d7b7eadd4fd64",
+          "label": "MINGA",
+          "qty": {
+            "number": 31,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c9136113567c06275",
+      "docType": {
+        "_id": "6324402cc2f25567039e7ab5",
+        "label": "CIPROMOX"
+      },
+      "date": "2019-11-12T08:01:40",
+      "number": 8,
+      "counterparty": {
+        "company": {
+          "_id": "6324402ca4126599576825f8",
+          "label": "CYTRAK"
+        },
+        "document": {
+          "_id": "6324402c5b5eca064c714289",
+          "label": "OVERPLEX"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402cc633bbb1828236c4",
+          "label": "UTARA",
+          "qty": {
+            "number": 33,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402cbb6029f9a9034198",
+      "docType": {
+        "_id": "6324402cbd198e9574d34324",
+        "label": "IMANT"
+      },
+      "date": "2019-06-03T11:09:42",
+      "number": 9,
+      "counterparty": {
+        "company": {
+          "_id": "6324402cf69ec1ed882f598f",
+          "label": "APEXIA"
+        },
+        "document": {
+          "_id": "6324402c000144e05f6395af",
+          "label": "ORGANICA"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402cb662e90308bd35c2",
+          "label": "ISOSWITCH",
+          "qty": {
+            "number": 40,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c5e4a790e2cc76e4e",
+      "docType": {
+        "_id": "6324402c60d89466a51deb7c",
+        "label": "FLUM"
+      },
+      "date": "2021-05-23T10:52:05",
+      "number": 10,
+      "counterparty": {
+        "company": {
+          "_id": "6324402cd02c825987f4641f",
+          "label": "INTERFIND"
+        },
+        "document": {
+          "_id": "6324402cc159757daffa3940",
+          "label": "CENTREE"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402cc2b4065051012605",
+          "label": "VERAQ",
+          "qty": {
+            "number": 29,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402cbfce0f848cecf8ce",
+      "docType": {
+        "_id": "6324402c9df8c7d8a14fd6b4",
+        "label": "OVOLO"
+      },
+      "date": "2016-05-09T02:22:25",
+      "number": 11,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c2ee1104c3c090764",
+          "label": "ISOSURE"
+        },
+        "document": {
+          "_id": "6324402c830b90d54443a661",
+          "label": "KRAG"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c49b6117caa007260",
+          "label": "ZILCH",
+          "qty": {
+            "number": 27,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402cb038dd572a2b0ebd",
+      "docType": {
+        "_id": "6324402ca4544afac2069c0d",
+        "label": "GUSHKOOL"
+      },
+      "date": "2020-01-15T01:20:54",
+      "number": 12,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c26d9e9eaeb977e14",
+          "label": "EXOTERIC"
+        },
+        "document": {
+          "_id": "6324402cb661dd474eae5733",
+          "label": "KOOGLE"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c12e4b41130149661",
+          "label": "NURALI",
+          "qty": {
+            "number": 21,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402ca0762a7b43853ecd",
+      "docType": {
+        "_id": "6324402c1ab2f4aae585334f",
+        "label": "IZZBY"
+      },
+      "date": "2015-10-30T06:16:46",
+      "number": 13,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c2fa82141e67e9a89",
+          "label": "XIIX"
+        },
+        "document": {
+          "_id": "6324402cc4cdc9a7297c5e87",
+          "label": "PROFLEX"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402cf795cf92d4709af6",
+          "label": "RUBADUB",
+          "qty": {
+            "number": 40,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402cd884d8802db00cf8",
+      "docType": {
+        "_id": "6324402cc8561947e699f77e",
+        "label": "SNORUS"
+      },
+      "date": "2022-06-26T03:53:38",
+      "number": 14,
+      "counterparty": {
+        "company": {
+          "_id": "6324402ca5579c4c1eed2c93",
+          "label": "RODEMCO"
+        },
+        "document": {
+          "_id": "6324402c079614010c009f5b",
+          "label": "KEGULAR"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402cb632edb4e692c5bd",
+          "label": "STROZEN",
+          "qty": {
+            "number": 39,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402ceca3a827f15339e2",
+      "docType": {
+        "_id": "6324402c453831acb3286346",
+        "label": "STELAECOR"
+      },
+      "date": "2014-06-06T11:52:59",
+      "number": 15,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c901e65d5f3903c86",
+          "label": "QUONATA"
+        },
+        "document": {
+          "_id": "6324402cd52e410ce4eefdbb",
+          "label": "TASMANIA"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c5e3f5b67459f703b",
+          "label": "POWERNET",
+          "qty": {
+            "number": 37,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402cd8dcb87ec0d65c03",
+      "docType": {
+        "_id": "6324402c91dffe1c9d9345b2",
+        "label": "PRISMATIC"
+      },
+      "date": "2016-10-29T12:59:38",
+      "number": 16,
+      "counterparty": {
+        "company": {
+          "_id": "6324402ce626a21e3b9ce71c",
+          "label": "NETPLODE"
+        },
+        "document": {
+          "_id": "6324402c7d00ac3adce6b6af",
+          "label": "OPTICON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c98d1695918e5babf",
+          "label": "DIGIAL",
+          "qty": {
+            "number": 30,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c640bca03a2b34603",
+      "docType": {
+        "_id": "6324402cd369470f1c0d2337",
+        "label": "MANTRIX"
+      },
+      "date": "2020-05-20T08:56:58",
+      "number": 17,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c7ba29ec9a2287bcb",
+          "label": "KYAGURU"
+        },
+        "document": {
+          "_id": "6324402c7a05677094155d8e",
+          "label": "AQUASSEUR"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c114059e98c11546a",
+          "label": "LOCAZONE",
+          "qty": {
+            "number": 29,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c68eb632f9e4e747b",
+      "docType": {
+        "_id": "6324402cf630308a731de4c4",
+        "label": "ENTROFLEX"
+      },
+      "date": "2021-07-10T11:37:00",
+      "number": 18,
+      "counterparty": {
+        "company": {
+          "_id": "6324402ceecb7e7adb3bcd47",
+          "label": "EARTHPLEX"
+        },
+        "document": {
+          "_id": "6324402cdc986c59a094cf37",
+          "label": "IMPERIUM"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c05804efd8bb9b3f8",
+          "label": "EPLOSION",
+          "qty": {
+            "number": 40,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c33c2f54cff0df70a",
+      "docType": {
+        "_id": "6324402cf9d1179ec30df5f8",
+        "label": "EXODOC"
+      },
+      "date": "2021-10-25T02:51:49",
+      "number": 19,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c4b6cf46b1281d493",
+          "label": "DIGIGENE"
+        },
+        "document": {
+          "_id": "6324402c8782e711d4dd13c2",
+          "label": "MYOPIUM"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402cc899b4df68cc8715",
+          "label": "MELBACOR",
+          "qty": {
+            "number": 31,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c16517b5ff36a836d",
+      "docType": {
+        "_id": "6324402c78c50dfabb2c5867",
+        "label": "OZEAN"
+      },
+      "date": "2018-12-29T07:37:44",
+      "number": 20,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c9dd87010a5bf3cd0",
+          "label": "SLOFAST"
+        },
+        "document": {
+          "_id": "6324402ceabc1ad479c7577a",
+          "label": "UNQ"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c99578721505ab4bc",
+          "label": "SNACKTION",
+          "qty": {
+            "number": 28,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c6e6138f103c5b037",
+      "docType": {
+        "_id": "6324402cb20c85069727aec1",
+        "label": "ASSURITY"
+      },
+      "date": "2017-02-18T08:42:45",
+      "number": 21,
+      "counterparty": {
+        "company": {
+          "_id": "6324402cec56582de06a556a",
+          "label": "TECHMANIA"
+        },
+        "document": {
+          "_id": "6324402c8ade00960e33cfcf",
+          "label": "COMBOT"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c41df733d85b87a07",
+          "label": "MAINELAND",
+          "qty": {
+            "number": 20,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c9d97558dd34bfe0a",
+      "docType": {
+        "_id": "6324402cdd387fe45bec1c26",
+        "label": "PHUEL"
+      },
+      "date": "2018-01-28T11:12:50",
+      "number": 22,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c7193efb7073af41c",
+          "label": "XLEEN"
+        },
+        "document": {
+          "_id": "6324402c72e4a7408b2940df",
+          "label": "ACCEL"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c77e7bb1ca38debad",
+          "label": "ECOSYS",
+          "qty": {
+            "number": 26,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402cea38b578256de8a0",
+      "docType": {
+        "_id": "6324402c4b90d0e5ef30722a",
+        "label": "ARTIQ"
+      },
+      "date": "2022-05-12T07:20:37",
+      "number": 23,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c4375775362275cfc",
+          "label": "ETERNIS"
+        },
+        "document": {
+          "_id": "6324402cafc387cb86aca8aa",
+          "label": "BICOL"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c670e0abba279d2bb",
+          "label": "ZERBINA",
+          "qty": {
+            "number": 24,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c600140dd1530a717",
+      "docType": {
+        "_id": "6324402cc9c0e7952970f525",
+        "label": "TWIGGERY"
+      },
+      "date": "2019-10-11T07:31:00",
+      "number": 24,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c03bdf7ae14818d82",
+          "label": "DANCERITY"
+        },
+        "document": {
+          "_id": "6324402c19d967df05dee4a7",
+          "label": "CHORIZON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402cf3edb044230cc891",
+          "label": "SEALOUD",
+          "qty": {
+            "number": 38,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c81654677126ccc96",
+      "docType": {
+        "_id": "6324402c5caad7ff25306db0",
+        "label": "OATFARM"
+      },
+      "date": "2015-05-12T03:11:28",
+      "number": 25,
+      "counterparty": {
+        "company": {
+          "_id": "6324402cad4f2c32de61123a",
+          "label": "QUADEEBO"
+        },
+        "document": {
+          "_id": "6324402c8487da7d1046f27e",
+          "label": "FLUMBO"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402cfbe0680353cd9cfc",
+          "label": "VORATAK",
+          "qty": {
+            "number": 30,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c9691f29896e4e765",
+      "docType": {
+        "_id": "6324402ceb86bed12e525ca5",
+        "label": "COMTOURS"
+      },
+      "date": "2018-02-08T09:50:30",
+      "number": 26,
+      "counterparty": {
+        "company": {
+          "_id": "6324402cb44a190a3548474e",
+          "label": "TROPOLIS"
+        },
+        "document": {
+          "_id": "6324402cd96ce384a9e2b732",
+          "label": "EXTRAWEAR"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c1abcbcc54ee27d65",
+          "label": "ESSENSIA",
+          "qty": {
+            "number": 23,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c986e14fb83f3c8c4",
+      "docType": {
+        "_id": "6324402c12205705174327e3",
+        "label": "LIMOZEN"
+      },
+      "date": "2018-01-28T11:21:47",
+      "number": 27,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c3091bce9efb705fd",
+          "label": "IRACK"
+        },
+        "document": {
+          "_id": "6324402c4880a7d0e1a8795f",
+          "label": "BRAINQUIL"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c4c78711529f47da5",
+          "label": "COLAIRE",
+          "qty": {
+            "number": 38,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c87422d9aeddff755",
+      "docType": {
+        "_id": "6324402c06ae7c87722199ce",
+        "label": "AVENETRO"
+      },
+      "date": "2017-02-08T11:07:59",
+      "number": 28,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c99cb6a9db50970da",
+          "label": "GEEKKO"
+        },
+        "document": {
+          "_id": "6324402ccfddadbca79f7de5",
+          "label": "OHMNET"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c60f16d873d1e6f44",
+          "label": "COMCUBINE",
+          "qty": {
+            "number": 33,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c0071d0027d40269b",
+      "docType": {
+        "_id": "6324402cc0c0da760a0784d0",
+        "label": "GADTRON"
+      },
+      "date": "2015-06-27T08:03:59",
+      "number": 29,
+      "counterparty": {
+        "company": {
+          "_id": "6324402ccecf7e1dbbc59306",
+          "label": "INTRAWEAR"
+        },
+        "document": {
+          "_id": "6324402cbbe005392a693596",
+          "label": "COMSTRUCT"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c83a8ba47b29c5f00",
+          "label": "ENTOGROK",
+          "qty": {
+            "number": 37,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c3199ac867a5b2130",
+      "docType": {
+        "_id": "6324402cf295f67b7d4edd82",
+        "label": "NORALEX"
+      },
+      "date": "2015-03-12T04:27:02",
+      "number": 30,
+      "counterparty": {
+        "company": {
+          "_id": "6324402cee4c2476cfe7a128",
+          "label": "PORTICA"
+        },
+        "document": {
+          "_id": "6324402c5163e8fda357cae2",
+          "label": "DAIDO"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402cb390afc1f7584e1b",
+          "label": "ELECTONIC",
+          "qty": {
+            "number": 27,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c40e018051e47d2e2",
+      "docType": {
+        "_id": "6324402c62e4c5dbd6d350ab",
+        "label": "ZENTIME"
+      },
+      "date": "2021-08-06T05:24:07",
+      "number": 31,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c733b6e7dee318e2f",
+          "label": "GAZAK"
+        },
+        "document": {
+          "_id": "6324402c7ede2620b943108e",
+          "label": "ZILENCIO"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402cedfc40110affa5f0",
+          "label": "TERRAGO",
+          "qty": {
+            "number": 32,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c5782a3eb05bf1052",
+      "docType": {
+        "_id": "6324402c87cc400d238d70ea",
+        "label": "GLUID"
+      },
+      "date": "2020-10-18T09:31:18",
+      "number": 32,
+      "counterparty": {
+        "company": {
+          "_id": "6324402cd4457e3b2382823c",
+          "label": "ZILLIDIUM"
+        },
+        "document": {
+          "_id": "6324402c232ed0cee595afa5",
+          "label": "CAPSCREEN"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c0dff3c7687782dbd",
+          "label": "SURELOGIC",
+          "qty": {
+            "number": 32,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c4d3a487161657127",
+      "docType": {
+        "_id": "6324402c150121ea2937f34b",
+        "label": "CIRCUM"
+      },
+      "date": "2016-01-20T01:33:00",
+      "number": 33,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c9cd2340259e9c7f8",
+          "label": "FROSNEX"
+        },
+        "document": {
+          "_id": "6324402cc99872a94b6c09b3",
+          "label": "COGNICODE"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c2586974c49ef3bd0",
+          "label": "DIGIPRINT",
+          "qty": {
+            "number": 28,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c6f2619a6d7694039",
+      "docType": {
+        "_id": "6324402c27fa2bc9012ad30c",
+        "label": "IPLAX"
+      },
+      "date": "2022-06-23T08:13:44",
+      "number": 34,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c9acf08907fb54b13",
+          "label": "MIRACULA"
+        },
+        "document": {
+          "_id": "6324402c1f29d248b6c3649d",
+          "label": "OBONES"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c599d970055e18888",
+          "label": "COMSTAR",
+          "qty": {
+            "number": 23,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c4cc55096de42fb97",
+      "docType": {
+        "_id": "6324402c025fb17d7b4755a7",
+        "label": "BOILCAT"
+      },
+      "date": "2014-07-04T06:27:51",
+      "number": 35,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c2c478d8cd65d9fb7",
+          "label": "THREDZ"
+        },
+        "document": {
+          "_id": "6324402c9d16e72fb3fff77d",
+          "label": "PRINTSPAN"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402cd5f42883a3ce8820",
+          "label": "ISOSPHERE",
+          "qty": {
+            "number": 32,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c498e366a3b531487",
+      "docType": {
+        "_id": "6324402c5d26a48dde4110e6",
+        "label": "INFOTRIPS"
+      },
+      "date": "2016-06-28T12:36:41",
+      "number": 36,
+      "counterparty": {
+        "company": {
+          "_id": "6324402cbd4e3291b9fb601d",
+          "label": "BLUEGRAIN"
+        },
+        "document": {
+          "_id": "6324402cdcc318e17aadcd67",
+          "label": "ECRAZE"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402cec84c341473263af",
+          "label": "EARBANG",
+          "qty": {
+            "number": 35,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402cd173bd4e4fcf09d4",
+      "docType": {
+        "_id": "6324402c6fa2570253b39185",
+        "label": "EDECINE"
+      },
+      "date": "2018-08-25T02:05:23",
+      "number": 37,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c4f22890f3bf921e2",
+          "label": "EURON"
+        },
+        "document": {
+          "_id": "6324402c0290b2f8c6bc6f84",
+          "label": "MEDIOT"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402cdedcb50ca9d3b3a0",
+          "label": "FLEXIGEN",
+          "qty": {
+            "number": 27,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c4c88fb38569cf0bd",
+      "docType": {
+        "_id": "6324402ccd70718781c4209d",
+        "label": "INTERODEO"
+      },
+      "date": "2020-09-18T09:17:00",
+      "number": 38,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c888eb31889b04e62",
+          "label": "ZILLAN"
+        },
+        "document": {
+          "_id": "6324402ca1cf2d18aa35a9ed",
+          "label": "ZENCO"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c6575304d9e488f4e",
+          "label": "HIVEDOM",
+          "qty": {
+            "number": 25,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402ccdb17722d6b50335",
+      "docType": {
+        "_id": "6324402c4cd22bfb45bcca2d",
+        "label": "UNCORP"
+      },
+      "date": "2014-10-03T04:43:57",
+      "number": 39,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c06d9ce12e50499e6",
+          "label": "ZENSUS"
+        },
+        "document": {
+          "_id": "6324402c159cfcc0e098ad2a",
+          "label": "NIKUDA"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c47f654d4728e0515",
+          "label": "UNISURE",
+          "qty": {
+            "number": 20,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c5624db19f6879ff2",
+      "docType": {
+        "_id": "6324402ccd3385863fd0e27e",
+        "label": "PLASMOX"
+      },
+      "date": "2015-12-23T08:56:54",
+      "number": 40,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c411dee756de475b5",
+          "label": "TRASOLA"
+        },
+        "document": {
+          "_id": "6324402c1bba0e52d59bc985",
+          "label": "SEQUITUR"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c8bbac8f76d629a61",
+          "label": "UNIA",
+          "qty": {
+            "number": 22,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c8ccfb5f8a305c7da",
+      "docType": {
+        "_id": "6324402c59758a7099154760",
+        "label": "ZOUNDS"
+      },
+      "date": "2019-07-10T03:17:20",
+      "number": 41,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c21fec37529bd404e",
+          "label": "PIGZART"
+        },
+        "document": {
+          "_id": "6324402c015937741e2d3562",
+          "label": "EXOSPACE"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402cf1512de4d6dfe5bc",
+          "label": "NAMEBOX",
+          "qty": {
+            "number": 39,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402cad0a3fcdb9fcf990",
+      "docType": {
+        "_id": "6324402cdf9e56d9d24defe8",
+        "label": "APPLIDECK"
+      },
+      "date": "2019-05-25T06:35:25",
+      "number": 42,
+      "counterparty": {
+        "company": {
+          "_id": "6324402cafa0fd837a63c794",
+          "label": "KINETICUT"
+        },
+        "document": {
+          "_id": "6324402cc651b10ee65de5e2",
+          "label": "TRIBALOG"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c4b20d072f6b81963",
+          "label": "APPLIDEC",
+          "qty": {
+            "number": 33,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402cbe36397aa0a8bfcd",
+      "docType": {
+        "_id": "6324402cc10b974e835bd195",
+        "label": "COMVEYOR"
+      },
+      "date": "2020-06-05T08:16:59",
+      "number": 43,
+      "counterparty": {
+        "company": {
+          "_id": "6324402cb4c9acb33a754d9b",
+          "label": "SILODYNE"
+        },
+        "document": {
+          "_id": "6324402c6b7d8f76b7a53c0d",
+          "label": "GEOFARM"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c5f4866b58b7239b3",
+          "label": "HOPELI",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402ca09f019e7500f083",
+      "docType": {
+        "_id": "6324402ca8354d738b3a94dd",
+        "label": "ENDIPIN"
+      },
+      "date": "2017-12-22T10:13:45",
+      "number": 44,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c56e410120524d179",
+          "label": "NIPAZ"
+        },
+        "document": {
+          "_id": "6324402c6c60cc6b63646f8b",
+          "label": "SULFAX"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c86d99ecfae1af832",
+          "label": "TALAE",
+          "qty": {
+            "number": 29,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402cb49c7ce9ac69c7a2",
+      "docType": {
+        "_id": "6324402c345d0913428ee1f3",
+        "label": "RAMEON"
+      },
+      "date": "2018-06-24T05:52:26",
+      "number": 45,
+      "counterparty": {
+        "company": {
+          "_id": "6324402cf2fe2efbdcdc45c3",
+          "label": "PAWNAGRA"
+        },
+        "document": {
+          "_id": "6324402c1cd97e3b98443387",
+          "label": "INVENTURE"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c7b00df2c133fc9ee",
+          "label": "ACUSAGE",
+          "qty": {
+            "number": 22,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402cd44f602d1d964b5f",
+      "docType": {
+        "_id": "6324402cce85fcb540c4ced6",
+        "label": "OPTICALL"
+      },
+      "date": "2018-02-16T12:53:48",
+      "number": 46,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c0010c4263276eea5",
+          "label": "ZIZZLE"
+        },
+        "document": {
+          "_id": "6324402cb1aae9a046ed0465",
+          "label": "TSUNAMIA"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c158b32ec15bf1036",
+          "label": "EMTRAC",
+          "qty": {
+            "number": 26,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402cad6c862cd2b404cc",
+      "docType": {
+        "_id": "6324402c058f78475a6c560e",
+        "label": "SUPREMIA"
+      },
+      "date": "2020-05-09T05:12:37",
+      "number": 47,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c6102c1ba20462ffc",
+          "label": "SCENTRIC"
+        },
+        "document": {
+          "_id": "6324402c2706f7b636aba6ae",
+          "label": "SUPPORTAL"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c4cab9233727d6c4c",
+          "label": "GENMOM",
+          "qty": {
+            "number": 22,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c6f7bd5a9a3effe0d",
+      "docType": {
+        "_id": "6324402c0ccf2983974d6d4d",
+        "label": "MAROPTIC"
+      },
+      "date": "2021-01-16T09:55:13",
+      "number": 48,
+      "counterparty": {
+        "company": {
+          "_id": "6324402cb06b5a5a90b8d4b9",
+          "label": "KEEG"
+        },
+        "document": {
+          "_id": "6324402c81ea3a8927c27c5a",
+          "label": "AUTOGRATE"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402cf6e6f4cca3fe4b68",
+          "label": "BILLMED",
+          "qty": {
+            "number": 38,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c329b0e5d5677f5f3",
+      "docType": {
+        "_id": "6324402cd8bfaf143a484ce4",
+        "label": "GLEAMINK"
+      },
+      "date": "2018-04-26T07:19:50",
+      "number": 49,
+      "counterparty": {
+        "company": {
+          "_id": "6324402cdb0443a5a9816a44",
+          "label": "WRAPTURE"
+        },
+        "document": {
+          "_id": "6324402c0aaf1a3b023391ed",
+          "label": "LUXURIA"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ce911d566b0e9802b",
+          "label": "XURBAN",
+          "qty": {
+            "number": 37,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402cd4b764005eed6266",
+      "docType": {
+        "_id": "6324402c4b97a23f21c602e5",
+        "label": "COMVEY"
+      },
+      "date": "2016-02-11T09:03:40",
+      "number": 50,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c47f40ad92d8aea51",
+          "label": "SKINSERVE"
+        },
+        "document": {
+          "_id": "6324402cb88a7db7ab1f249d",
+          "label": "IMKAN"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402cdc0bbe552eb04f76",
+          "label": "QUALITEX",
+          "qty": {
+            "number": 22,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c3b6ef8d893d9955e",
+      "docType": {
+        "_id": "6324402ca7c6c79176b2be90",
+        "label": "CYTREK"
+      },
+      "date": "2015-12-29T02:34:04",
+      "number": 51,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c49283ecf04c51902",
+          "label": "QUARMONY"
+        },
+        "document": {
+          "_id": "6324402cd3d0d5a0a9d93542",
+          "label": "EARWAX"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c44e7502205af3eeb",
+          "label": "DOGNOSIS",
+          "qty": {
+            "number": 25,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c18701535a09d98ea",
+      "docType": {
+        "_id": "6324402ca99b8b328d418dc8",
+        "label": "QUONK"
+      },
+      "date": "2017-12-04T09:19:28",
+      "number": 52,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c42a73c6454d7e5c9",
+          "label": "FISHLAND"
+        },
+        "document": {
+          "_id": "6324402c95240875542df50e",
+          "label": "ROTODYNE"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402cc43c3194ccfe5cca",
+          "label": "ZANITY",
+          "qty": {
+            "number": 26,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c63819024ed0f1ef1",
+      "docType": {
+        "_id": "6324402c946a429b86fd6a7f",
+        "label": "MARQET"
+      },
+      "date": "2015-03-27T01:49:26",
+      "number": 53,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c2aed706d357fc83a",
+          "label": "ZILLADYNE"
+        },
+        "document": {
+          "_id": "6324402c2cb8841c3fcddd99",
+          "label": "KLUGGER"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c0702a1da72599a7f",
+          "label": "LIMAGE",
+          "qty": {
+            "number": 20,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c0e55d64ff5757c03",
+      "docType": {
+        "_id": "6324402c663105fdb8e9dfd6",
+        "label": "INSURETY"
+      },
+      "date": "2021-01-08T09:18:13",
+      "number": 54,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c496eab92d4d0a338",
+          "label": "BIOTICA"
+        },
+        "document": {
+          "_id": "6324402c9e380bde09532738",
+          "label": "CRUSTATIA"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c8946cb4c174575b0",
+          "label": "MALATHION",
+          "qty": {
+            "number": 22,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402cfa74a1eb4891aec7",
+      "docType": {
+        "_id": "6324402c1e56f89332c2b142",
+        "label": "XANIDE"
+      },
+      "date": "2019-10-24T02:42:36",
+      "number": 55,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c2d00cb39a1cabde2",
+          "label": "BALOOBA"
+        },
+        "document": {
+          "_id": "6324402c5855b2aa9ecbe629",
+          "label": "KRAGGLE"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c0bcbac86317861d1",
+          "label": "ZIDOX",
+          "qty": {
+            "number": 38,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402ccc5441ada2d7e2a0",
+      "docType": {
+        "_id": "6324402c1f16e4c8c42153a2",
+        "label": "ZILLAR"
+      },
+      "date": "2019-12-21T01:37:28",
+      "number": 56,
+      "counterparty": {
+        "company": {
+          "_id": "6324402cbc26bc77f7c8f131",
+          "label": "APPLICA"
+        },
+        "document": {
+          "_id": "6324402c7a5932a9a1def74c",
+          "label": "PHEAST"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c329e9ded3ab2512a",
+          "label": "EXOTECHNO",
+          "qty": {
+            "number": 23,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402cfe20e39dfad47600",
+      "docType": {
+        "_id": "6324402c0ab558e1662f3064",
+        "label": "RODEOMAD"
+      },
+      "date": "2021-12-30T12:03:33",
+      "number": 57,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c5d5866aa3a290aaa",
+          "label": "CONCILITY"
+        },
+        "document": {
+          "_id": "6324402cd1c51ea0b49cfbb0",
+          "label": "INEAR"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c72a40c48ae20c710",
+          "label": "OCTOCORE",
+          "qty": {
+            "number": 32,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402ca3a5941481247172",
+      "docType": {
+        "_id": "6324402ce07a4f993f612731",
+        "label": "VENDBLEND"
+      },
+      "date": "2016-08-03T06:27:17",
+      "number": 58,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c04c15dbb8fedab55",
+          "label": "ISOTRONIC"
+        },
+        "document": {
+          "_id": "6324402ca743aefc8d68ac4c",
+          "label": "UPDAT"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c0a446c08164b5c4d",
+          "label": "COMVERGES",
+          "qty": {
+            "number": 34,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c8d8e2d0a06834026",
+      "docType": {
+        "_id": "6324402c90970a6d4f17251b",
+        "label": "DATACATOR"
+      },
+      "date": "2021-12-17T09:39:48",
+      "number": 59,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c4c9a84ba8f71e182",
+          "label": "FLOTONIC"
+        },
+        "document": {
+          "_id": "6324402c79c0785f9d212c28",
+          "label": "KONGENE"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c7cccd5a9493c0738",
+          "label": "ZYTRAX",
+          "qty": {
+            "number": 32,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c89ff1ef6bf1e5ebc",
+      "docType": {
+        "_id": "6324402ce1cae81f781b5fe7",
+        "label": "ORBALIX"
+      },
+      "date": "2014-04-30T09:41:23",
+      "number": 60,
+      "counterparty": {
+        "company": {
+          "_id": "6324402cb2311b91ffccdd75",
+          "label": "ZUVY"
+        },
+        "document": {
+          "_id": "6324402c59252854f463d1ed",
+          "label": "KONNECT"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ccd509750ceb0d7dc",
+          "label": "ILLUMITY",
+          "qty": {
+            "number": 25,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c0878ab5730fb4c72",
+      "docType": {
+        "_id": "6324402c3a2b1ccd844e4263",
+        "label": "ISODRIVE"
+      },
+      "date": "2019-07-17T12:08:08",
+      "number": 61,
+      "counterparty": {
+        "company": {
+          "_id": "6324402cb404a6442b22d5a1",
+          "label": "LUNCHPAD"
+        },
+        "document": {
+          "_id": "6324402c72794d8e276a82c7",
+          "label": "GEOLOGIX"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c7aafa3381687e29a",
+          "label": "ANDERSHUN",
+          "qty": {
+            "number": 32,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402cca7bf36ac7e5dca4",
+      "docType": {
+        "_id": "6324402cb845d79a2e6007e9",
+        "label": "TELPOD"
+      },
+      "date": "2017-01-04T11:48:37",
+      "number": 62,
+      "counterparty": {
+        "company": {
+          "_id": "6324402caa44b61193ebdd33",
+          "label": "ZAGGLES"
+        },
+        "document": {
+          "_id": "6324402cbb3ea887484297a2",
+          "label": "CABLAM"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c49792af43725bd43",
+          "label": "TERASCAPE",
+          "qty": {
+            "number": 30,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c8337b3eb3a4f36f6",
+      "docType": {
+        "_id": "6324402c9e124a86bd549adc",
+        "label": "SLOGANAUT"
+      },
+      "date": "2020-04-26T10:48:39",
+      "number": 63,
+      "counterparty": {
+        "company": {
+          "_id": "6324402cf7a134f24bdf5a81",
+          "label": "PROGENEX"
+        },
+        "document": {
+          "_id": "6324402ce8bed213eb2e03ef",
+          "label": "ECLIPSENT"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402cde84a226ad94c7b3",
+          "label": "SYNTAC",
+          "qty": {
+            "number": 33,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c9f1e1d07f54dfa14",
+      "docType": {
+        "_id": "6324402c9255a82e469b50e8",
+        "label": "URBANSHEE"
+      },
+      "date": "2021-12-20T05:12:38",
+      "number": 64,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c079b49b3ee9a353e",
+          "label": "MEDIFAX"
+        },
+        "document": {
+          "_id": "6324402c491884a3b22107f7",
+          "label": "VIASIA"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ce0ec37f84ab2d974",
+          "label": "TOYLETRY",
+          "qty": {
+            "number": 20,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402ce3d130650842d2d4",
+      "docType": {
+        "_id": "6324402c3b8bb5920c695195",
+        "label": "XINWARE"
+      },
+      "date": "2022-04-14T08:25:35",
+      "number": 65,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c8e484518070c2257",
+          "label": "MAGMINA"
+        },
+        "document": {
+          "_id": "6324402c591ab1a3a2364050",
+          "label": "ZEDALIS"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c67ee100e5b2cfbda",
+          "label": "EXIAND",
+          "qty": {
+            "number": 37,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "_id": "6324402c80f52f945cbde868",
+      "docType": {
+        "_id": "6324402c85a35366e26656ef",
+        "label": "RECRITUBE"
+      },
+      "date": "2016-07-28T04:55:12",
+      "number": 66,
+      "counterparty": {
+        "company": {
+          "_id": "6324402ca15b8c1128743ca0",
+          "label": "EXOSTREAM"
+        },
+        "document": {
+          "_id": "6324402c8e58bdba2cbfbca2",
+          "label": "STUCCO"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402c3e665c3434426fc6",
+          "label": "BRISTO",
+          "qty": {
+            "number": 29,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
         }
       ]
     }

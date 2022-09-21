@@ -1,5 +1,4 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import ReactDataGrid from '@inovua/reactdatagrid-enterprise';
 import { Input } from 'antd';
@@ -8,7 +7,7 @@ import { useGetMagazinesListQuery } from '../../global/services/magazinesService
 import { MAGAZINES_PAGE } from './constants';
 import './MagazinesPage.scss';
 
-const MagazinesPage = props => {
+const MagazinesPage = () => {
   const navigate = useNavigate();
 
   const [gridRef, setGridRef] = useState(null)
@@ -18,7 +17,7 @@ const MagazinesPage = props => {
 
   const handleChangeSelectionIndex = useCallback(({ selected: selectedId }) => {
     navigate(`/magazines/${selectedId}`)
-  }, []);
+  }, [navigate]);
 
   const handleChangeActiveRowIndex = (index) => {
     writeToLocalStorage('magazines_active_row', index);
@@ -55,10 +54,6 @@ const MagazinesPage = props => {
       />
     </div>
   );
-};
-
-MagazinesPage.propTypes = {
-
 };
 
 export default MagazinesPage;

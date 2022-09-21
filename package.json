@@ -11,6 +11,8 @@
     "@testing-library/user-event": "^13.5.0",
     "antd": "^4.23.1",
     "axios": "^0.27.2",
+    "gh-pages": "^4.0.0",
+    "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
@@ -23,7 +25,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "npm run stylelint && npm run prettier && npm run eslint && INLINE_RUNTIME_CHUNK=false react-scripts build ",
+    "build": "npm run stylelint && npm run prettier && npm run eslint && INLINE_RUNTIME_CHUNK=false react-scripts build",
+    "build:no-check": "react-scripts build",
     "clean": "(rm -rf build || :) && (rm -rf node_modules/* || :)",
     "test": "MOCKS_ENABLED=true react-scripts test",
     "test:coverage": "MOCKS_ENABLED=true npm test -- --coverage --watchAll=false",
@@ -38,7 +41,9 @@
     "freshinstall": "npm run clean && npm i",
     "pretest": "npm run prettier && npm run stylelint && npm run eslint",
     "cypress": "cypress open",
-    "cypress:all": "cypress run"
+    "cypress:all": "cypress run",
+    "predeploy": "npm run build:no-check",
+    "deploy": "gh-pages -b master -d build"
   },
   "eslintConfig": {
     "extends": [
