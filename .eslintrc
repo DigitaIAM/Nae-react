@@ -19,7 +19,10 @@
     "import/extensions": 1,
     "react/jsx-pascal-case": 1,
     "react/destructuring-assignment": 1,
-    "react/jsx-props-no-spreading": "off"
+    "react/jsx-props-no-spreading": "off",
+    "react/function-component-definition": "off",
+    "dot-notation": "off",
+    "no-underscore-dangle": "off"
   },
   "settings": {
     "import/resolver": {

@@ -3,6 +3,7 @@ import {axiosBaseQuery} from '../axiosBaseQuery';
 import { isMockMagazinesService } from './isMockEnabled';
 
 const magazinesListMock = require('../../__mocks__/Magazines/getMagazinesList.mock.json');
+const magazineByIdMock = require('../../__mocks__/Magazines/getMagazineById.mock.json');
 
 export const magazinesService = createApi({
   reducerPath: 'magazinesService',
@@ -15,7 +16,10 @@ export const magazinesService = createApi({
     getMagazinesList: build.query({
       query: () => ({ url: '', method: 'GET', mockData: magazinesListMock }),
     }),
+    getMagazine: build.query({
+      query: (id) => ({ url: `${id}`, method: 'GET', mockData: magazineByIdMock }),
+    }),
   }),
 });
 
-export const { useGetMagazinesListQuery } = magazinesService;
+export const { useGetMagazinesListQuery, useGetMagazineQuery } = magazinesService;
