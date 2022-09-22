@@ -23,6 +23,7 @@ const MagazineDetailsPage = () => {
 
   const [autoComplete, setAutoComplete] = useState([]);
 
+  // DOM Props for cells of the table
   const cellDOMProps = (cellProps) => ({
     onClick: () => {
       gridRef.current.startEdit({ columnId: cellProps.id, rowIndex: cellProps.rowIndex, value: lodash.get(cellProps.data, cellProps.name) })
@@ -32,6 +33,7 @@ const MagazineDetailsPage = () => {
     },
   });
 
+  // Number Input render setting for table cell
   const renderEditorNumeric = (editorProps) => {
     return (
       <input
@@ -58,8 +60,8 @@ const MagazineDetailsPage = () => {
     )
   }
 
+  // Auto Complete Input render setting for table cell
   const renderEditorAutoComplete = (editorProps, placeholder) => {
-
     return (
       <AutoComplete
         tabIndex={0}
@@ -176,11 +178,13 @@ const MagazineDetailsPage = () => {
 
     const isRowEmpty = compareRows(row, MAGAZINE_DETAILS_PAGE.table.emptyRow);
 
+    // Add new row if some was added to last empty row
     if (rowId === MAGAZINE_DETAILS_PAGE.table.emptyRow['_id'] && !isRowEmpty) {
       row['_id'] = lodash.uniqueId();
       _data.goods.push(row);
     }
 
+    // Delete row if it is empty
     if (isRowEmpty && rowId !== MAGAZINE_DETAILS_PAGE.table.emptyRow['_id']) {
       lodash.remove(_data.goods, (n) => n['_id'] === rowId);
     }
