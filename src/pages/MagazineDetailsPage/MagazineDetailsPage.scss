@@ -27,6 +27,12 @@
       justify-content: space-between;
       align-items: stretch;
 
+      .sum-info {
+        font-size: 16px;
+        line-height: 21px;
+        font-weight: 900;
+      }
+
       .information--input {
         width: 100%;
         outline: none;
@@ -54,6 +60,63 @@
 
     .body--data-grid {
       margin-bottom: 25px;
+      width: 100%;
+      border-bottom: none;
+
+      .InovuaReactDataGrid__cell--in-edit {
+        .table--cell-input {
+          border:1px solid #7986cb;
+          box-shadow:0 0 0 2px rgba(121,134,203,.4);
+        }
+      }
+
+      .ant-select {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        &.ant-select-focused {
+          .ant-select-selector {
+            border:1px solid #7986cb;
+            box-shadow:0 0 0 2px rgba(121,134,203,.4);
+          }
+        }
+
+        .ant-select-selector {
+          padding: 0;
+          width: 100%;
+          height: 100%;
+
+          .ant-select-selection-search {
+            width: 100%;
+            height: 100%;
+
+            input {
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+              width: 100%;
+              height: 100%;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+
+      .table--cell-input {
+        width: 100%;
+        height: 100%;
+        outline: none;
+        border: none;
+        box-shadow: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 8px;
+        //background-color: transparent;
+      }
     }
 
     .document--footer {
@@ -74,7 +137,8 @@
         transition: .3s;
 
         &:focus {
-          box-shadow: 0 0 7px #00fff369;
+          border:1px solid #7986cb;
+          box-shadow:0 0 0 2px rgba(121,134,203,.4);
         }
       }
     }

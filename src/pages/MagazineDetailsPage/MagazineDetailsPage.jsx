@@ -2,9 +2,16 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import * as lodash from 'lodash';
 import ReactDataGrid from '@inovua/reactdatagrid-enterprise';
+import NumericEditor from '@inovua/reactdatagrid-community/NumericEditor'
+import DateEditor from '@inovua/reactdatagrid-community/DateEditor';
+import TextField from '@mui/material/TextField';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 // import {useGetMagazineQuery} from '../../global/services/magazinesService';
 import { compareRows } from './helpers';
 import './MagazineDetailsPage.scss';
+import {AutoComplete} from 'antd';
 
 const { data: mockData } = require('../../__mocks__/Magazines/getMagazineById.mock.json');
 
@@ -14,6 +21,8 @@ const MagazineDetailsPage = () => {
   const [gridRef, setGridRef] = useState(null);
   const [dataSource, setDataSource] = useState(mockData);
 
+  const [autoComplete, setAutoComplete] = useState([]);
+
   const cellDOMProps = (cellProps) => ({
     onClick: () => {
       gridRef.current.startEdit({ columnId: cellProps.id, rowIndex: cellProps.rowIndex, value: lodash.get(cellProps.data, cellProps.name) })
@@ -21,7 +30,70 @@ const MagazineDetailsPage = () => {
     onFocus: () => {
       gridRef.current.startEdit({ columnId: cellProps.id, rowIndex: cellProps.rowIndex, value: lodash.get(cellProps.data, cellProps.name) })
     },
-  })
+  });
+
+  const renderEditorNumeric = (editorProps) => {
+    return (
+      <input
+        tabIndex={0}
+        autoFocus
+        type="number"
+        className="table--cell-input"
+        value={editorProps.value === undefined ? lodash.get(editorProps.cellProps.data, editorProps.cellProps.id) : editorProps.value}
+        onChange={(e) => editorProps.onChange(e.target.value)}
+        onBlur={editorProps.onComplete}
+        onKeyDown={(e) => {
+          if (e.key === 'Tab') {
+            editorProps.onTabNavigation(
+              true,
+              e.shiftKey ? -1 : 1,
+            );
+          }
+
+          if (e.key === 'Enter') {
+            editorProps.onComplete(e);
+          }
+        }}
+      />
+    )
+  }
+
+  const renderEditorAutoComplete = (editorProps, placeholder) => {
+
+    return (
+      <AutoComplete
+        tabIndex={0}
+        autoFocus
+        placeholder={placeholder}
+        options={autoComplete.filter((value) => value.includes(editorProps.value || '')).map((value) => ({ value }))}
+        value={editorProps.value === undefined ? lodash.get(editorProps.cellProps.data, editorProps.cellProps.id) : editorProps.value}
+        onSelect={editorProps.onComplete}
+        onChange={(value) => {
+          editorProps.onChange(value)
+        }}
+        onBlur={(e) => {
+          editorProps.onComplete(e);
+
+          setAutoComplete((prev) => {
+            const set = new Set([
+              ...prev,
+              editorProps.value,
+            ]);
+
+            return Array.from(set);
+          })
+        }}
+        onKeyDown={(e) => {
+          if (e.key === 'Tab') {
+            editorProps.onTabNavigation(
+              true,
+              e.shiftKey ? -1 : 1,
+            );
+          }
+        }}
+      />
+    )
+  }
 
   // Page Document Settings
   const MAGAZINE_DETAILS_PAGE = {
@@ -31,12 +103,42 @@ const MagazineDetailsPage = () => {
         { name: 'cost', header: 'Сумма' }
       ],
       columns: [
-        { name: 'label', header: 'Изделие', defaultFlex: 2, render: (dataObject) => dataObject.data.label, cellDOMProps },
-        { name: 'qty.number', header: null, defaultFlex: 2, group: 'qty', render: (dataObject) => dataObject.data.qty.number, cellDOMProps },
+        {
+          name: 'label',
+          header: 'Изделие',
+          defaultFlex: 2,
+          render: (dataObject) => dataObject.data.label,
+          cellDOMProps,
+          renderEditor: renderEditorAutoComplete,
+        },
+        {
+          name: 'qty.number',
+          header: null,
+          defaultFlex: 2,
+          group: 'qty',
+          render: (dataObject) => dataObject.data.qty.number,
+          cellDOMProps,
+          renderEditor: renderEditorNumeric,
+        },
         { name: 'qty.uom', header: null, defaultFlex: 2, group: 'qty', render: (dataObject) => dataObject.data.qty.uom, cellDOMProps },
-        { name: 'cost.number', header: null, defaultFlex: 2, group: 'cost', render: (dataObject) => dataObject.data.cost.number, cellDOMProps },
+        {
+          name: 'cost.number',
+          header: null,
+          defaultFlex: 2,
+          group: 'cost',
+          render: (dataObject) => dataObject.data.cost.number,
+          cellDOMProps,
+          renderEditor: renderEditorNumeric,
+        },
         { name: 'cost.currency', header: null, defaultFlex: 2, group: 'cost', render: (dataObject) => dataObject.data.cost.currency, cellDOMProps },
-        { name: 'note', header: 'Комментарий', defaultFlex: 2, render: (dataObject) => dataObject.data.note },
+        {
+          name: 'note',
+          header: 'Комментарий',
+          defaultFlex: 2,
+          render: (dataObject) => dataObject.data.note,
+          cellDOMProps,
+          renderEditor: renderEditorAutoComplete,
+        },
       ],
       emptyRow: {
         '_id': 'empty_row',
@@ -107,6 +209,10 @@ const MagazineDetailsPage = () => {
     }
   }, []);
 
+  const sumTotal = dataSource.goods.reduce((sum, item) => {
+    return sum + item.cost.number;
+  }, 0);
+
   return (
     <div className="magazine-page--wrapper">
       <div className="document--header">
@@ -116,16 +222,30 @@ const MagazineDetailsPage = () => {
       <h1 className="document--name">Название документа № номет от дата</h1>
       <div className="document--body">
         <div className="body--information">
-          <input type="text" className="information--input w-50" />
-          <input type="text" className="information--input w-50" />
+          <input type="text" className="information--input w-50" placeholder="Контрагент" />
+          <input type="text" className="information--input w-50" placeholder="Договор" />
         </div>
         <div className="body--information">
-          <input type="text" className="information--input w-100" />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              className="information--input w-100"
+              value={dataSource.date}
+              onChange={(newValue) => {
+                setDataSource((predData) => ({
+                  ...predData,
+                  date: newValue,
+                }));
+              }}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
         </div>
         <ReactDataGrid
           className="body--data-grid"
+          style={{ minHeight: `${(dataSource.goods.length + 1) * 40 + 81}px`}}
           idProperty="_id"
           editable
+          autoFocusOnEditComplete
           onReady={setGridRef}
           onEditComplete={onEditComplete}
           // loading={isLoading || isFetching || (!data && !error)}
@@ -137,9 +257,13 @@ const MagazineDetailsPage = () => {
           ]}
         />
         <div className="body--information">
+          <p className="sum-info">Итого: {sumTotal} {dataSource.goods[0].cost.currency}</p>
+        </div>
+        <div className="body--information">
           <input
             type="text"
             className="information--input w-100"
+            placeholder="Комментарий"
             value={dataSource.node}
             onChange={handleChangeComment}
           />
