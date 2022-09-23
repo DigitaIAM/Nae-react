@@ -12,6 +12,7 @@ const MagazinesPage = () => {
 
   const [gridRef, setGridRef] = useState(null)
   const [searchValue, setSearchValue] = useState('');
+  const [activeIndex, setActiveIndex] = useState(Number(getFromLocalStorage('magazines_active_row') || 0))
 
   const { data: magazinesData, isLoading: isMagazinesLoading, isFetching: isMagazinesFetching, error: magazinesError } = useGetMagazinesListQuery();
 
@@ -21,14 +22,44 @@ const MagazinesPage = () => {
 
   const handleChangeActiveRowIndex = (index) => {
     writeToLocalStorage('magazines_active_row', index);
+    setActiveIndex(index)
   }
 
   useEffect(() => {
-    const activeRow = getFromLocalStorage('magazines_active_row');
-    if (activeRow && gridRef) {
-      gridRef.current.focus();
+    if (gridRef?.current?.domRef?.current && document.body.clientWidth === getFromLocalStorage('magazines_window_width')) {
+      // Scroll table to the prev value
+      gridRef.current.domRef.current.querySelector('.inovua-react-scroll-container__wrapper').firstChild.scrollTop = getFromLocalStorage('magazines_table_scroll');
+
+      // Set table active row according to prev
+      const activeRow = getFromLocalStorage('magazines_active_row');
+
+      if (activeRow && gridRef) {
+        gridRef.current.focus();
+      }
+    }
+
+    return () => {
+      writeToLocalStorage('magazines_window_width', document.body.clientWidth);
     }
   }, [gridRef]);
+
+  // Update the last scroll position every time when table was scrolled
+  useEffect(() => {
+    if (gridRef) {
+      // Get table scrollable element
+      const element = gridRef?.current?.domRef?.current?.querySelector('.inovua-react-scroll-container__wrapper').firstChild;
+
+      const onHandleScroll = (e) => {
+        writeToLocalStorage('magazines_table_scroll', e.target.scrollTop)
+      }
+
+      element.addEventListener('scroll', onHandleScroll);
+
+      return () => {
+        element.removeEventListener('scroll', onHandleScroll)
+      }
+    }
+  }, [gridRef])
 
   return (
     <div className="magazines-page--wrapper">
@@ -43,12 +74,11 @@ const MagazinesPage = () => {
         style={MAGAZINES_PAGE.table.gridStyle}
         loading={isMagazinesLoading || isMagazinesFetching || (!magazinesData && !magazinesError)}
         dataSource={magazinesData || []}
-        defaultActiveIndex={Number(getFromLocalStorage('magazines_active_row') || 0)}
+        activeIndex={activeIndex}
         enableSelection
         pagination
         livePagination
         scrollThreshold={0.7}
-        // defaultSelected={selectedRowIndex}
         onSelectionChange={handleChangeSelectionIndex}
         onActiveIndexChange={handleChangeActiveRowIndex}
       />

@@ -1,7 +1,14 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
+import {AutoComplete} from 'antd';
 import * as lodash from 'lodash';
 import ReactDataGrid from '@inovua/reactdatagrid-enterprise';
+import NumericEditor from '@inovua/reactdatagrid-community/NumericEditor'
+import DateEditor from '@inovua/reactdatagrid-community/DateEditor';
+import TextField from '@mui/material/TextField';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 // import {useGetMagazineQuery} from '../../global/services/magazinesService';
 import { compareRows } from './helpers';
 import './MagazineDetailsPage.scss';
@@ -14,6 +21,10 @@ const MagazineDetailsPage = () => {
   const [gridRef, setGridRef] = useState(null);
   const [dataSource, setDataSource] = useState(mockData);
 
+  const [autoComplete, setAutoComplete] = useState([]);
+  const [comment, setComment] = useState(mockData.note || '');
+
+  // DOM Props for cells of the table
   const cellDOMProps = (cellProps) => ({
     onClick: () => {
       gridRef.current.startEdit({ columnId: cellProps.id, rowIndex: cellProps.rowIndex, value: lodash.get(cellProps.data, cellProps.name) })
@@ -21,7 +32,74 @@ const MagazineDetailsPage = () => {
     onFocus: () => {
       gridRef.current.startEdit({ columnId: cellProps.id, rowIndex: cellProps.rowIndex, value: lodash.get(cellProps.data, cellProps.name) })
     },
-  })
+  });
+
+  // Number Input render setting for table cell
+  const renderEditorNumeric = (editorProps) => {
+    return (
+      <input
+        tabIndex={0}
+        autoFocus
+        type="number"
+        className="table--cell-input"
+        value={editorProps.value === undefined ? lodash.get(editorProps.cellProps.data, editorProps.cellProps.id) : editorProps.value}
+        onChange={(e) => editorProps.onChange(e.target.value)}
+        onBlur={editorProps.onComplete}
+        onKeyDown={(e) => {
+          if (e.key === 'Tab') {
+            editorProps.onTabNavigation(
+              true,
+              e.shiftKey ? -1 : 1,
+            );
+          }
+
+          if (e.key === 'Enter') {
+            editorProps.onComplete(e);
+          }
+        }}
+      />
+    )
+  }
+
+  // Auto Complete Input render setting for table cell
+  const renderEditorAutoComplete = (editorProps) => {
+    return (
+      <AutoComplete
+        tabIndex={0}
+        autoFocus
+        options={autoComplete.filter((value) => value.includes(editorProps.value || '')).map((value) => ({ value }))}
+        value={editorProps.value === undefined ? lodash.get(editorProps.cellProps.data, editorProps.cellProps.id) : editorProps.value}
+        onSelect={(value) => {
+          editorProps.onChange(value)
+        }}
+        onChange={(value) => {
+          editorProps.onChange(value)
+        }}
+        onBlur={(e) => {
+          editorProps.onComplete(e);
+
+          if (editorProps.value?.length) {
+            setAutoComplete((prev) => {
+              const set = new Set([
+                ...prev,
+                editorProps.value,
+              ]);
+
+              return Array.from(set);
+            })
+          }
+        }}
+        onKeyDown={(e) => {
+          if (e.key === 'Tab') {
+            editorProps.onTabNavigation(
+              true,
+              e.shiftKey ? -1 : 1,
+            );
+          }
+        }}
+      />
+    )
+  }
 
   // Page Document Settings
   const MAGAZINE_DETAILS_PAGE = {
@@ -31,12 +109,42 @@ const MagazineDetailsPage = () => {
         { name: 'cost', header: 'Сумма' }
       ],
       columns: [
-        { name: 'label', header: 'Изделие', defaultFlex: 2, render: (dataObject) => dataObject.data.label, cellDOMProps },
-        { name: 'qty.number', header: null, defaultFlex: 2, group: 'qty', render: (dataObject) => dataObject.data.qty.number, cellDOMProps },
+        {
+          name: 'label',
+          header: 'Изделие',
+          defaultFlex: 2,
+          render: (dataObject) => dataObject.data.label,
+          cellDOMProps,
+          renderEditor: renderEditorAutoComplete,
+        },
+        {
+          name: 'qty.number',
+          header: null,
+          defaultFlex: 2,
+          group: 'qty',
+          render: (dataObject) => dataObject.data.qty.number,
+          cellDOMProps,
+          renderEditor: renderEditorNumeric,
+        },
         { name: 'qty.uom', header: null, defaultFlex: 2, group: 'qty', render: (dataObject) => dataObject.data.qty.uom, cellDOMProps },
-        { name: 'cost.number', header: null, defaultFlex: 2, group: 'cost', render: (dataObject) => dataObject.data.cost.number, cellDOMProps },
+        {
+          name: 'cost.number',
+          header: null,
+          defaultFlex: 2,
+          group: 'cost',
+          render: (dataObject) => dataObject.data.cost.number,
+          cellDOMProps,
+          renderEditor: renderEditorNumeric,
+        },
         { name: 'cost.currency', header: null, defaultFlex: 2, group: 'cost', render: (dataObject) => dataObject.data.cost.currency, cellDOMProps },
-        { name: 'note', header: 'Комментарий', defaultFlex: 2, render: (dataObject) => dataObject.data.note },
+        {
+          name: 'note',
+          header: 'Комментарий',
+          defaultFlex: 2,
+          render: (dataObject) => dataObject.data.note,
+          cellDOMProps,
+          renderEditor: renderEditorAutoComplete,
+        },
       ],
       emptyRow: {
         '_id': 'empty_row',
@@ -74,11 +182,13 @@ const MagazineDetailsPage = () => {
 
     const isRowEmpty = compareRows(row, MAGAZINE_DETAILS_PAGE.table.emptyRow);
 
+    // Add new row if some was added to last empty row
     if (rowId === MAGAZINE_DETAILS_PAGE.table.emptyRow['_id'] && !isRowEmpty) {
       row['_id'] = lodash.uniqueId();
       _data.goods.push(row);
     }
 
+    // Delete row if it is empty
     if (isRowEmpty && rowId !== MAGAZINE_DETAILS_PAGE.table.emptyRow['_id']) {
       lodash.remove(_data.goods, (n) => n['_id'] === rowId);
     }
@@ -87,10 +197,7 @@ const MagazineDetailsPage = () => {
   }, [dataSource.goods]);
 
   const handleChangeComment = (e) => {
-    setDataSource((prevData) => ({
-      ...prevData,
-      node: e.target.value,
-    }));
+    setComment(e.target.value);
   };
 
   useEffect(() => {
@@ -107,6 +214,10 @@ const MagazineDetailsPage = () => {
     }
   }, []);
 
+  const sumTotal = dataSource.goods.reduce((sum, item) => {
+    return sum + Number(item.cost.number || 0);
+  }, 0);
+
   return (
     <div className="magazine-page--wrapper">
       <div className="document--header">
@@ -116,16 +227,30 @@ const MagazineDetailsPage = () => {
       <h1 className="document--name">Название документа № номет от дата</h1>
       <div className="document--body">
         <div className="body--information">
-          <input type="text" className="information--input w-50" />
-          <input type="text" className="information--input w-50" />
+          <input type="text" className="information--input w-50" placeholder="Контрагент" />
+          <input type="text" className="information--input w-50" placeholder="Договор" />
         </div>
         <div className="body--information">
-          <input type="text" className="information--input w-100" />
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              className="information--input w-100"
+              value={dataSource.date}
+              onChange={(newValue) => {
+                setDataSource((predData) => ({
+                  ...predData,
+                  date: newValue,
+                }));
+              }}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
         </div>
         <ReactDataGrid
           className="body--data-grid"
+          style={{ minHeight: `${(dataSource.goods.length + 1) * 40 + 81}px`}}
           idProperty="_id"
           editable
+          autoFocusOnEditComplete
           onReady={setGridRef}
           onEditComplete={onEditComplete}
           // loading={isLoading || isFetching || (!data && !error)}
@@ -137,10 +262,13 @@ const MagazineDetailsPage = () => {
           ]}
         />
         <div className="body--information">
-          <input
-            type="text"
+          <p className="sum-info">Итого: {sumTotal} {dataSource.goods[0].cost.currency}</p>
+        </div>
+        <div className="body--information">
+          <textarea
             className="information--input w-100"
-            value={dataSource.node}
+            placeholder="Комментарий"
+            value={comment}
             onChange={handleChangeComment}
           />
         </div>
@@ -151,12 +279,13 @@ const MagazineDetailsPage = () => {
           >
             Cоздать
           </button>
-          <button
+          <Link
             type="button"
             className="footer--btn"
+            to="/magazines"
           >
             Отменить
-          </button>
+          </Link>
         </div>
       </div>
     </div>

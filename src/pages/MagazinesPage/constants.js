@@ -39,7 +39,7 @@ export const MAGAZINES_PAGE = {
         render: (dataObject) => dataObject.data.goods[0]?.cost.currency,
       },
       {
-        name: 'comment',
+        name: 'note',
         header: 'Комментарий',
         defaultFlex: 2,
         render: null,
