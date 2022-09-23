@@ -135,6 +135,9 @@
         background-color: transparent;
         height: 40px;
         transition: .3s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         &:focus {
           border:1px solid #7986cb;

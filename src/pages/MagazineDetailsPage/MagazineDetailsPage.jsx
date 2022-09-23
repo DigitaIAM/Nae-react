@@ -1,5 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
+import {AutoComplete} from 'antd';
 import * as lodash from 'lodash';
 import ReactDataGrid from '@inovua/reactdatagrid-enterprise';
 import NumericEditor from '@inovua/reactdatagrid-community/NumericEditor'
@@ -11,7 +12,6 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 // import {useGetMagazineQuery} from '../../global/services/magazinesService';
 import { compareRows } from './helpers';
 import './MagazineDetailsPage.scss';
-import {AutoComplete} from 'antd';
 
 const { data: mockData } = require('../../__mocks__/Magazines/getMagazineById.mock.json');
 
@@ -22,6 +22,7 @@ const MagazineDetailsPage = () => {
   const [dataSource, setDataSource] = useState(mockData);
 
   const [autoComplete, setAutoComplete] = useState([]);
+  const [comment, setComment] = useState(mockData.note || '');
 
   // DOM Props for cells of the table
   const cellDOMProps = (cellProps) => ({
@@ -61,29 +62,32 @@ const MagazineDetailsPage = () => {
   }
 
   // Auto Complete Input render setting for table cell
-  const renderEditorAutoComplete = (editorProps, placeholder) => {
+  const renderEditorAutoComplete = (editorProps) => {
     return (
       <AutoComplete
         tabIndex={0}
         autoFocus
-        placeholder={placeholder}
         options={autoComplete.filter((value) => value.includes(editorProps.value || '')).map((value) => ({ value }))}
         value={editorProps.value === undefined ? lodash.get(editorProps.cellProps.data, editorProps.cellProps.id) : editorProps.value}
-        onSelect={editorProps.onComplete}
+        onSelect={(value) => {
+          editorProps.onChange(value)
+        }}
         onChange={(value) => {
           editorProps.onChange(value)
         }}
         onBlur={(e) => {
           editorProps.onComplete(e);
 
-          setAutoComplete((prev) => {
-            const set = new Set([
-              ...prev,
-              editorProps.value,
-            ]);
+          if (editorProps.value?.length) {
+            setAutoComplete((prev) => {
+              const set = new Set([
+                ...prev,
+                editorProps.value,
+              ]);
 
-            return Array.from(set);
-          })
+              return Array.from(set);
+            })
+          }
         }}
         onKeyDown={(e) => {
           if (e.key === 'Tab') {
@@ -193,10 +197,7 @@ const MagazineDetailsPage = () => {
   }, [dataSource.goods]);
 
   const handleChangeComment = (e) => {
-    setDataSource((prevData) => ({
-      ...prevData,
-      node: e.target.value,
-    }));
+    setComment(e.target.value);
   };
 
   useEffect(() => {
@@ -214,7 +215,7 @@ const MagazineDetailsPage = () => {
   }, []);
 
   const sumTotal = dataSource.goods.reduce((sum, item) => {
-    return sum + item.cost.number;
+    return sum + Number(item.cost.number || 0);
   }, 0);
 
   return (
@@ -264,11 +265,10 @@ const MagazineDetailsPage = () => {
           <p className="sum-info">Итого: {sumTotal} {dataSource.goods[0].cost.currency}</p>
         </div>
         <div className="body--information">
-          <input
-            type="text"
+          <textarea
             className="information--input w-100"
             placeholder="Комментарий"
-            value={dataSource.node}
+            value={comment}
             onChange={handleChangeComment}
           />
         </div>
@@ -279,12 +279,13 @@ const MagazineDetailsPage = () => {
           >
             Cоздать
           </button>
-          <button
+          <Link
             type="button"
             className="footer--btn"
+            to="/magazines"
           >
             Отменить
-          </button>
+          </Link>
         </div>
       </div>
     </div>
