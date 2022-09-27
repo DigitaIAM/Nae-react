@@ -3,8 +3,6 @@ import {Link, useNavigate} from 'react-router-dom';
 import {AutoComplete} from 'antd';
 import * as lodash from 'lodash';
 import ReactDataGrid from '@inovua/reactdatagrid-enterprise';
-import NumericEditor from '@inovua/reactdatagrid-community/NumericEditor'
-import DateEditor from '@inovua/reactdatagrid-community/DateEditor';
 import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -55,6 +53,10 @@ const MagazineDetailsPage = () => {
 
           if (e.key === 'Enter') {
             editorProps.onComplete(e);
+            editorProps.onTabNavigation(
+              true,
+              1,
+            );
           }
         }}
       />
@@ -63,15 +65,17 @@ const MagazineDetailsPage = () => {
 
   // Auto Complete Input render setting for table cell
   const renderEditorAutoComplete = (editorProps) => {
+    const options = autoComplete.filter((value) => value.includes(editorProps.value || '')).map((value) => ({ value }));
+
     return (
       <AutoComplete
         tabIndex={0}
         autoFocus
-        options={autoComplete.filter((value) => value.includes(editorProps.value || '')).map((value) => ({ value }))}
+        defaultActiveFirstOption={false}
+        options={options}
+        open={!!options.length}
         value={editorProps.value === undefined ? lodash.get(editorProps.cellProps.data, editorProps.cellProps.id) : editorProps.value}
-        onSelect={(value) => {
-          editorProps.onChange(value)
-        }}
+        onSelect={() => {}}
         onChange={(value) => {
           editorProps.onChange(value)
         }}
@@ -95,6 +99,17 @@ const MagazineDetailsPage = () => {
               true,
               e.shiftKey ? -1 : 1,
             );
+          }
+
+          if (e.key === 'Enter') {
+            const selectedValue = e.target.getAttribute('aria-activedescendant').split('_').pop();
+            if (options[selectedValue]) {
+              editorProps.onChange(options[selectedValue].value);
+            }
+
+            setTimeout(() => {
+              editorProps.onTabNavigation(true, 1);
+            }, 100);
           }
         }}
       />
@@ -126,7 +141,15 @@ const MagazineDetailsPage = () => {
           cellDOMProps,
           renderEditor: renderEditorNumeric,
         },
-        { name: 'qty.uom', header: null, defaultFlex: 2, group: 'qty', render: (dataObject) => dataObject.data.qty.uom, cellDOMProps },
+        {
+          name: 'qty.uom',
+          header: null,
+          defaultFlex: 2,
+          group: 'qty',
+          render: (dataObject) => dataObject.data.qty.uom,
+          cellDOMProps,
+          renderEditor: renderEditorAutoComplete,
+        },
         {
           name: 'cost.number',
           header: null,
@@ -136,7 +159,15 @@ const MagazineDetailsPage = () => {
           cellDOMProps,
           renderEditor: renderEditorNumeric,
         },
-        { name: 'cost.currency', header: null, defaultFlex: 2, group: 'cost', render: (dataObject) => dataObject.data.cost.currency, cellDOMProps },
+        {
+          name: 'cost.currency',
+          header: null,
+          defaultFlex: 2,
+          group: 'cost',
+          render: (dataObject) => dataObject.data.cost.currency,
+          cellDOMProps,
+          renderEditor: renderEditorAutoComplete,
+        },
         {
           name: 'note',
           header: 'Комментарий',
