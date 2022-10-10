@@ -1,229 +1,266 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import PropTypes from 'prop-types';
-import {getFromLocalStorage, writeToLocalStorage} from '../../global/helpers';
+import {isArray, get as getObjectValue } from 'lodash';
+import config from '../../config';
 import './Table.scss';
 
-const Table = ({ dataSource, settings }) => {
-  const [visibleRows, setVisibleRows] = useState({
-    start: 0,
-    end: 0,
-  });
+const source = {
+  columns: [
+    {
+      id: 'date',
+      name: 'Дата',
+      dataKey: 'date',
+    },
+    {
+      id: 'counterparty',
+      name: 'Контрагент',
+      dataKey: 'counterparty.label',
+    },
+    {
+      id: 'sum',
+      name: 'Сумма',
+      dataKey: ['cost.number', 'cost.currency']
+    },
+    {
+      id: 'note',
+      name: 'Комментарий',
+      dataKey: 'note',
+    }
+  ]
+}
 
-  const tableWrapperRef = useRef();
+const { data } = require('../../__mocks__/Magazines/getMagazinesList.mock.json');
 
-  const tableBodyContainerRef = useRef();
-  const tableRef = useRef();
-  const tableBodyRef = useRef();
-
+const Table = props => {
+  const bodyScrollContainerRef = useRef();
   const focusedRowRef = useRef();
+  const focusedCellWrapperRef = useRef();
   const focusedCellRef = useRef();
 
-  const handleUpdateFocusedIndexes = (rowIndex, cellIndex) => {
-    writeToLocalStorage('tableActiveRowIndex', rowIndex);
-    writeToLocalStorage('tableActiveCellIndex', cellIndex);
-  }
-
-  const handleUpdateShowedRows = (nextRow, nextRowIndex) => {
-    const nextRowHeight = nextRow.offsetHeight;
-
-    const prevMarginTop = Number(tableRef.current.style.marginTop.replace('px', ''));
-    console.log(nextRowIndex)
-    if (nextRowIndex > visibleRows.end) {
-      tableRef.current.style.marginTop = `${prevMarginTop - nextRowHeight}px`;
-
-      setVisibleRows((prev) => ({
-        start: prev.start + 1,
-        end: prev.end + 1,
-      }));
-    }
-    if (nextRowIndex < visibleRows.start) {
-      console.log(prevMarginTop - nextRowHeight)
-      tableRef.current.style.marginTop = `${prevMarginTop + nextRowHeight}px`;
-
-      setVisibleRows((prev) => ({
-        start: prev.start - 1,
-        end: prev.end - 1,
-      }));
-    }
-  }
-
-  const handleFocusCell = (e) => {
-    const focusedCellIndex = Array.prototype.indexOf.call(e.target.parentElement.children, e.target);
-    const focusedRowIndex = Array.prototype.indexOf.call(tableBodyRef.current.children, e.target.parentElement);
-
-    focusedCellRef.current = e.target;
-    focusedRowRef.current = e.target.parentElement;
-
-    e.target.focus();
-
-    handleUpdateFocusedIndexes(focusedRowIndex, focusedCellIndex);
-  }
-
-  useEffect(() => {
-    const handleArrowChangeDirection = (e) => {
-      if (!focusedCellRef.current) {
-        return;
-      }
-
-      const arrowKeyCodes = {
-        // Arrow Left
-        '37': 'previousElementSibling',
-        // Arrow Top
-        '38': 'previousElementSibling',
-        // Arrow Right
-        '39': 'nextElementSibling',
-        // Arrow Bottom
-        '40': 'nextElementSibling',
-      }
-
-      // Arrow Left & Arrow Right
-      if (e.keyCode === 37 || e.keyCode === 39) {
-        const sibling = focusedCellRef.current[arrowKeyCodes[e.keyCode]];
-
-        if (sibling) {
-          const focusedCellIndex = Array.prototype.indexOf.call(sibling.parentElement.children, sibling);
-          const focusedRowIndex = Array.prototype.indexOf.call(tableBodyRef.current.children, focusedRowRef.current);
-
-          focusedCellRef.current = sibling;
-          sibling.focus();
-
-          handleUpdateFocusedIndexes(focusedRowIndex, focusedCellIndex);
-        }
-      }
-
-      // Arrow Top & Arrow Bottom
-      if (e.keyCode === 38 || e.keyCode === 40) {
-        const sibling = focusedRowRef.current[arrowKeyCodes[e.keyCode]];
-
-        if (sibling) {
-          const focusedCellIndex = Array.prototype.indexOf.call(focusedRowRef.current.children, focusedCellRef.current);
-          const focusedRowIndex = Array.prototype.indexOf.call(tableBodyRef.current.children, sibling);
-
-          focusedRowRef.current = sibling;
-          focusedCellRef.current = sibling.children[focusedCellIndex];
-          sibling.children[focusedCellIndex].focus();
-
-          handleUpdateFocusedIndexes(focusedRowIndex, focusedCellIndex);
-          handleUpdateShowedRows(sibling, focusedRowIndex);
-        }
-      }
-    }
-
-    if (tableWrapperRef.current) {
-      tableBodyRef.current.addEventListener('keydown', handleArrowChangeDirection, false);
-    }
-
-    return () => {
-      tableBodyRef.current.removeEventListener('keydown', handleArrowChangeDirection, false);
-    }
+  const [editableState, setEditableState] = useState({
+    rowIndex: undefined,
+    cellWrapperIndex: undefined,
+    cellIndex: undefined,
   });
 
-  useEffect(() => {
-    const focusedRowIndex = getFromLocalStorage('tableActiveRowIndex');
-    const focusedCellIndex = getFromLocalStorage('tableActiveCellIndex');
-
-    if (focusedRowIndex && focusedCellIndex) {
-      const focusedRow = tableBodyRef.current.children[focusedRowIndex];
-      const focusedCell = focusedRow.children[focusedCellIndex];
-
-      focusedRowRef.current = focusedRow;
-      focusedCellRef.current = focusedCell;
-
-      focusedCell.focus();
+  const onFocus = (e) => {
+    if (e.target.classList.contains('table--row')) {
+      focusedRowRef.current = e.target;
     }
-  }, []);
+  }
 
-  useEffect(() => {
-    const onKeyDownScrollDisable = (e) => {
-      if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
+  const onBlur = (e) => {
+
+  }
+
+  const onRowKeyDown = (e) => {
+    if (e.ctrlKey === config.shortcuts.table.row.editStart.ctrl) {
+      if (e.key === config.shortcuts.table.row.editStart.key) {
         e.preventDefault();
+        const focusedCellWrapper = focusedRowRef.current.children[0];
+
+        if (focusedCellWrapper) {
+          focusedCellWrapperRef.current = focusedCellWrapper;
+          const focusedCell = focusedCellWrapper.children[0];
+
+          if (focusedCell) {
+            focusedCellRef.current = focusedCell;
+            focusedCell.focus();
+          }
+        }
       }
     }
 
-    document.addEventListener('keydown', onKeyDownScrollDisable, false);
+    if (e.key === config.shortcuts.table.row.rowMoveNext || e.key === config.shortcuts.table.row.rowMovePrev) {
+      e.preventDefault();
 
-    return () => {
-      document.removeEventListener('keydown', onKeyDownScrollDisable, false);
+      const direction = e.key === config.shortcuts.table.row.rowMoveNext ? 1 : -1;
+
+      const rowsArray = Array.from(bodyScrollContainerRef.current.children || []);
+      const indexOfFocusedRow = rowsArray.indexOf(focusedRowRef.current);
+
+      if (rowsArray[indexOfFocusedRow + direction]) {
+        const focusedRow = rowsArray[indexOfFocusedRow + direction];
+        focusedRowRef.current = focusedRow;
+        focusedRow.focus();
+      }
     }
-  }, []);
+  }
 
-  useEffect(() => {
-    if (tableBodyContainerRef.current) {
-      const containerHeight = tableBodyContainerRef.current.clientHeight;
+  const onCellKeyDown = (e) => {
+    if (config.shortcuts.table.row.cellMoveNext === e.key || e.key === 'Tab') {
+      e.preventDefault();
 
-      const { index: lastVisibleItemIndex } = Array.from(tableBodyRef.current?.children || []).reduce((obj, tr, index) => {
-        const newHeight = obj.height + tr.offsetHeight;
+      const cellsArray = Array.from(focusedCellWrapperRef.current.children || []);
+      const indexOfFocusedCell = cellsArray.indexOf(focusedCellRef.current);
 
-        if (newHeight <= containerHeight) {
-          return {
-            item: tr,
-            height: newHeight,
-            index,
-          }
+      if (cellsArray[indexOfFocusedCell + 1]) {
+        // Next Cell
+        const focusedCell = cellsArray[indexOfFocusedCell + 1];
+        focusedCellRef.current = focusedCell;
+        focusedCell.focus();
+      } else {
+        // Next Cell Wrapper
+        const cellWrappersArray = Array.from(focusedRowRef.current.children || []);
+        const indexOfFocusedCellWrapper = cellWrappersArray.indexOf(focusedCellWrapperRef.current);
+
+        if (cellWrappersArray[indexOfFocusedCellWrapper + 1]) {
+          // First Cell
+          const focusedCellWrapper = cellWrappersArray[indexOfFocusedCellWrapper + 1];
+          focusedCellWrapperRef.current = focusedCellWrapper;
+
+          const cellsArray = Array.from(focusedCellWrapper.children || []);
+          const focusedCell = cellsArray[0];
+          focusedCellRef.current = focusedCell;
+          focusedCell.focus();
+
         }
-
-        return obj;
-      }, {
-        item: null,
-        height: 0,
-        index: 0,
-      });
-
-      setVisibleRows((prev) => ({
-        ...prev,
-        end: lastVisibleItemIndex,
-      }));
+      }
     }
-  }, [tableBodyContainerRef.current])
 
-  console.log(visibleRows)
+    if (config.shortcuts.table.row.cellMovePrev === e.key || (e.shiftKey && e.key === 'Tab')) {
+      e.preventDefault();
+
+      const cellsArray = Array.from(focusedCellWrapperRef.current.children || []);
+      const indexOfFocusedCell = cellsArray.indexOf(focusedCellRef.current);
+
+      if (cellsArray[indexOfFocusedCell - 1]) {
+        // Prev Cell
+        const focusedCell = cellsArray[indexOfFocusedCell - 1];
+        focusedCellRef.current = focusedCell;
+        focusedCell.focus();
+      } else {
+        // Prev Cell Wrapper
+        const cellWrappersArray = Array.from(focusedRowRef.current.children || []);
+        const indexOfFocusedCellWrapper = cellWrappersArray.indexOf(focusedCellWrapperRef.current);
+
+        if (cellWrappersArray[indexOfFocusedCellWrapper - 1]) {
+          // Last Cell
+          const focusedCellWrapper = cellWrappersArray[indexOfFocusedCellWrapper - 1];
+          focusedCellWrapperRef.current = focusedCellWrapper;
+
+          const cellsArray = Array.from(focusedCellWrapper.children || []);
+          const focusedCell = cellsArray[cellsArray.length - 1];
+          focusedCellRef.current = focusedCell;
+          focusedCell.focus();
+        }
+      }
+    }
+
+    if (config.shortcuts.table.row.cellMoveUp === e.key || config.shortcuts.table.row.cellMoveDown === e.key) {
+      e.preventDefault();
+
+      const direction = e.key === config.shortcuts.table.row.cellMoveDown ? 1 : -1;
+
+      const rowsArray = Array.from(bodyScrollContainerRef.current.children || []);
+      const indexOfFocusedRow = rowsArray.indexOf(focusedRowRef.current);
+
+      const cellWrappersArray = Array.from(focusedRowRef.current.children || []);
+      const indexOfFocusedCellWrapper = cellWrappersArray.indexOf(focusedCellWrapperRef.current);
+
+      const cellsArray = Array.from(focusedCellWrapperRef.current.children || []);
+      const indexOfFocusedCell = cellsArray.indexOf(focusedCellRef.current);
+
+      if (rowsArray[indexOfFocusedRow + direction]) {
+        const focusedRow = rowsArray[indexOfFocusedRow + direction];
+        focusedRowRef.current = focusedRow;
+
+        const focusedCellWrapper = focusedRow.children[indexOfFocusedCellWrapper];
+        focusedCellWrapperRef.current = focusedCellWrapper;
+
+        const focusedCell = focusedCellWrapper.children[indexOfFocusedCell];
+        focusedCellRef.current = focusedCell;
+
+        focusedCell.focus();
+      }
+    }
+  }
 
   return (
-    <div className="table-container">
-      <div className="table-wrapper" ref={tableWrapperRef}>
-        <table className="table">
-          <colgroup>
-            {settings.columns.map((column) => (
-              <col style={{ width: column.width }} />
-            ))}
-          </colgroup>
-          <thead className="table-header">
-            <tr>
-              {settings.columns.map((column) => (
-                <th
-                  key={column.key}
-                  className="table-cell"
-                >
-                  {column.title}
-                </th>
-              ))}
-            </tr>
-          </thead>
-        </table>
-        <div ref={tableBodyContainerRef} className="table-body">
-          <table ref={tableRef}>
-            <colgroup>
-              {settings.columns.map((column) => (
-                <col style={{ width: column.width }} />
-              ))}
-            </colgroup>
-            <tbody ref={tableBodyRef} className="table-tbody">
-            {dataSource.map((item, rowIndex) => (
-              <tr key={item.id}>
-                {settings.columns.map((column,cellIndex) => (
-                  <td
-                    key={column.key}
-                    tabIndex={rowIndex * settings.columns.length + (cellIndex + 1)}
-                    onClick={handleFocusCell}
-                    onFocus={handleFocusCell}
+    <div className="table-wrapper">
+      <div className="table-body">
+        <div className="table-layout">
+          <div className="table--header-layout">
+            <div className="table--header-wrapper">
+              <div className="table--header">
+                {source.columns.map((column) => (
+                  <div
+                    key={column.id}
+                    className="table--header-cell"
+                    style={{
+                      flex: `0 1 ${100 / source.columns.length}%`,
+                      maxWidth: `${100 / source.columns.length}%`,
+                    }}
                   >
-                    {item[column.dataIndex]}
-                  </td>
+                    <div className="table--header-cell__content">
+                      {column.name}
+                    </div>
+                  </div>
                 ))}
-              </tr>
-            ))}
-            </tbody>
-          </table>
+              </div>
+            </div>
+          </div>
+          <div className="table--virtual-list">
+            <div
+              ref={bodyScrollContainerRef}
+              className="table--scroll-container-wrapper"
+            >
+              {data.map((item) => (
+                <div
+                  key={item.id}
+                  tabIndex={0}
+                  className="table--row"
+                  onFocus={onFocus}
+                  onBlur={onBlur}
+                  onKeyDown={onRowKeyDown}
+                >
+                  {source.columns.map((column) => (
+                    <div
+                      key={column.id}
+                      className="table--row-cell-wrapper"
+                      style={{
+                        flex: `0 1 ${100 / source.columns.length}%`,
+                        maxWidth: `${100 / source.columns.length}%`,
+                      }}
+                    >
+                      {isArray(column.dataKey) ? (
+                        <>
+                          {column.dataKey.map((key) => (
+                            <div
+                              key={key}
+                              tabIndex={-1}
+                              className="table--row-cell"
+                              style={{
+                                flex: `0 1 ${100 / column.dataKey.length}%`,
+                                maxWidth: `${100 / column.dataKey.length}%`,
+                              }}
+                              onKeyDown={onCellKeyDown}
+                            >
+                              <div className="table--row-cell__focus" />
+                              <div className="table--row-cell__content">
+                                {getObjectValue(item, key)}
+                              </div>
+                            </div>
+                          ))}
+                        </>
+                      ) : (
+                        <div
+                          tabIndex={-1}
+                          className="table--row-cell"
+                          onKeyDown={onCellKeyDown}
+                        >
+                          <div className="table--row-cell__focus" />
+                          <div className="table--row-cell__content">
+                            {getObjectValue(item, column.dataKey)}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -231,15 +268,7 @@ const Table = ({ dataSource, settings }) => {
 };
 
 Table.propTypes = {
-  dataSource: PropTypes.arrayOf((PropTypes.shape({}))),
-  settings: PropTypes.shape({
-    columns: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      dataIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]).isRequired,
-      key: PropTypes.string.isRequired,
-      width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    })),
-  }).isRequired,
+
 };
 
 export default Table;
