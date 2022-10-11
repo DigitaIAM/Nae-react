@@ -87,6 +87,23 @@
                   z-index: 100;
                 }
 
+                .table--row-cell__input {
+                  position: absolute;
+                  left: -1px;
+                  top: -1px;
+                  width: calc(100% + 2px);
+                  height: calc(100% + 2px);
+                  border: none;
+                  outline: none;
+                  background-color: transparent;
+                  z-index: 10;
+                  padding: 0 12px;
+
+                  &:focus {
+                    border: 1px solid $table-border--focus;
+                  }
+                }
+
                 &:focus {
                   .table--row-cell__focus {
                     display: block;

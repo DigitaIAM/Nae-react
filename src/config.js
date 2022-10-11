@@ -6,13 +6,23 @@ export default {
           key: 'e',
           ctrl: true,
         },
-        cellMoveNext: 'ArrowRight',
-        cellMovePrev: 'ArrowLeft',
-        cellMoveUp: 'ArrowUp',
-        cellMoveDown: 'ArrowDown',
-        rowMoveNext: 'ArrowDown',
-        rowMovePrev: 'ArrowUp',
+        moveNext: 'ArrowDown',
+        movePrev: 'ArrowUp',
       },
+      cell: {
+        moveNext: 'ArrowRight',
+        movePrev: 'ArrowLeft',
+        moveUp: 'ArrowUp',
+        moveDown: 'ArrowDown',
+        editStart: {
+          key: 'Enter',
+          ctrl: false,
+        },
+        editEnd: {
+          key: 'Enter',
+          ctrl: false,
+        }
+      }
     },
   },
 };
