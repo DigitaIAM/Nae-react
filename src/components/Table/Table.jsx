@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import { get as getObjectValue, cloneDeep, update as updateObjectValue } from 'lodash';
+import { checkEventKey, createEmptyObjectCopy, isObjectEmpty } from './helpers';
 import config from '../../config';
 import './Table.scss';
 
@@ -29,9 +30,7 @@ const source = {
   ]
 }
 
-
-
-const Table = ({ data }) => {
+const Table = ({ idProperty, data, isCellSelectable, isEditable, onRowKeyDown: onRowKeyDownProps }) => {
   const bodyScrollContainerRef = useRef();
   const focusedRowRef = useRef();
   const focusedCellWrapperRef = useRef();
@@ -50,9 +49,40 @@ const Table = ({ data }) => {
     if (data) {
       const dataClone = cloneDeep(data);
 
+      if (isEditable) {
+        dataClone.push(createEmptyObjectCopy(dataClone[0]));
+      }
+
       setCopiedData(dataClone);
     }
   }, [data]);
+
+  // Empty row controller.
+  useEffect(() => {
+    if (copiedData) {
+      if (isObjectEmpty(copiedData[copiedData.length - 1]) && isObjectEmpty(copiedData[copiedData.length - 2])) {
+        setCopiedData((prevData) => {
+          const data = cloneDeep(prevData);
+
+          data.pop();
+
+          return data;
+        });
+      }
+
+      if (!isObjectEmpty(copiedData[copiedData.length - 1])) {
+        setCopiedData((prevData) => {
+          const data = cloneDeep(prevData);
+
+          data.push(
+            createEmptyObjectCopy(copiedData[0]),
+          );
+
+          return data;
+        });
+      }
+    }
+  }, [copiedData]);
 
   // Set focus on editable cell input
   useEffect(() => {
@@ -62,22 +92,33 @@ const Table = ({ data }) => {
         input.focus();
       }
     }
-  }, [editableState.rowIndex, editableState.cellIndex, editableState.cellWrapperIndex])
+  }, [editableState.rowIndex, editableState.cellIndex, editableState.cellWrapperIndex]);
 
-  const onFocus = (e) => {
-    if (e.target.classList.contains('table--row')) {
-      focusedRowRef.current = e.target;
+  const cellSwitchToEditableMode = (cellValue) => {
+    if (editableState?.cellIndex === undefined && editableState?.rowIndex === undefined && editableState?.cellWrapperIndex === undefined) {
+      const rowsArray = Array.from(bodyScrollContainerRef?.current?.children || []);
+      const indexOfFocusedRow = rowsArray.indexOf(focusedRowRef?.current);
+
+      const cellWrapperArray = Array.from(focusedRowRef?.current?.children || []);
+      const indexOfFocusedCellWrapper = cellWrapperArray.indexOf(focusedCellWrapperRef.current);
+
+      const cellsArray = Array.from(focusedCellWrapperRef?.current?.children || []);
+      const indexOfFocusedCell = cellsArray.indexOf(focusedCellRef?.current);
+
+      setEditableState({
+        rowIndex: indexOfFocusedRow,
+        cellWrapperIndex: indexOfFocusedCellWrapper,
+        cellIndex: indexOfFocusedCell,
+      });
+
+      setCellData(cellValue);
     }
-  }
+  };
 
-  const onBlur = (e) => {
-
-  }
-
-  const onRowKeyDown = (e) => {
+  const changeNavigationToCells = (e, autoSwitch = false) => {
     // Row editing start. Will change navigation from rows only to cells.
-    if (e.ctrlKey === config.shortcuts.table.row.editStart.ctrl) {
-      if (e.key === config.shortcuts.table.row.editStart.key) {
+    if (isCellSelectable) {
+      if (checkEventKey(e, config.shortcuts.table.row.editStart) || autoSwitch) {
         e.preventDefault();
         const focusedCellWrapper = focusedRowRef.current.children[0];
 
@@ -92,103 +133,73 @@ const Table = ({ data }) => {
         }
       }
     }
-
-    // Move throw rows up and down.
-    if (e.key === config.shortcuts.table.row.moveNext || e.key === config.shortcuts.table.row.movePrev) {
-      e.preventDefault();
-
-      const direction = e.key === config.shortcuts.table.row.moveNext ? 1 : -1;
-
-      const rowsArray = Array.from(bodyScrollContainerRef.current.children || []);
-      const indexOfFocusedRow = rowsArray.indexOf(focusedRowRef.current);
-
-      if (rowsArray[indexOfFocusedRow + direction]) {
-        const focusedRow = rowsArray[indexOfFocusedRow + direction];
-        focusedRowRef.current = focusedRow;
-        focusedRow.focus();
-      }
-    }
   }
 
-  const onCellKeyDown = (e, cellValue) => {
-    // Move to the next cell
-    if (config.shortcuts.table.cell.moveNext === e.key || e.key === 'Tab') {
-      e.preventDefault();
+  const rowNavigate = (e, direction) => {
+    e.preventDefault();
 
-      const cellsArray = Array.from(focusedCellWrapperRef.current.children || []);
-      const indexOfFocusedCell = cellsArray.indexOf(focusedCellRef.current);
+    const directionIndex = direction === 'up' ? -1 : 1;
 
-      if (cellsArray[indexOfFocusedCell + 1]) {
-        // Next Cell
-        const focusedCell = cellsArray[indexOfFocusedCell + 1];
-        focusedCellRef.current = focusedCell;
-        focusedCell.focus();
-      } else {
-        // Next Cell Wrapper
-        const cellWrappersArray = Array.from(focusedRowRef.current.children || []);
-        const indexOfFocusedCellWrapper = cellWrappersArray.indexOf(focusedCellWrapperRef.current);
+    const rowsArray = Array.from(bodyScrollContainerRef?.current?.children || []);
+    const indexOfFocusedRow = rowsArray.indexOf(focusedRowRef?.current);
 
-        if (cellWrappersArray[indexOfFocusedCellWrapper + 1]) {
-          // First Cell
-          const focusedCellWrapper = cellWrappersArray[indexOfFocusedCellWrapper + 1];
-          focusedCellWrapperRef.current = focusedCellWrapper;
-
-          const cellsArray = Array.from(focusedCellWrapper.children || []);
-          const focusedCell = cellsArray[0];
-          focusedCellRef.current = focusedCell;
-          focusedCell.focus();
-
-        }
-      }
+    if (rowsArray[indexOfFocusedRow + directionIndex]) {
+      const focusedRow = rowsArray[indexOfFocusedRow + directionIndex];
+      focusedRowRef.current = focusedRow;
+      focusedRow.focus();
     }
+  };
 
-    // Move to the prev cell
-    if (config.shortcuts.table.cell.movePrev === e.key || (e.shiftKey && e.key === 'Tab')) {
-      e.preventDefault();
+  const cellNavigate = (event, direction, rowJump = false) => {
+    event.preventDefault();
 
-      const cellsArray = Array.from(focusedCellWrapperRef.current.children || []);
-      const indexOfFocusedCell = cellsArray.indexOf(focusedCellRef.current);
+    const cellsArray = Array.from(focusedCellWrapperRef?.current?.children || []);
+    const indexOfFocusedCell = cellsArray.indexOf(focusedCellRef?.current);
 
-      if (cellsArray[indexOfFocusedCell - 1]) {
-        // Prev Cell
-        const focusedCell = cellsArray[indexOfFocusedCell - 1];
+    if (direction === 'left' || direction === 'right') {
+      const directionIndex = direction === 'left' ? -1 : 1;
+      // Previous or Next Cell
+      if (cellsArray[indexOfFocusedCell + directionIndex]) {
+        const focusedCell = cellsArray[indexOfFocusedCell + directionIndex];
         focusedCellRef.current = focusedCell;
         focusedCell.focus();
       } else {
-        // Prev Cell Wrapper
-        const cellWrappersArray = Array.from(focusedRowRef.current.children || []);
-        const indexOfFocusedCellWrapper = cellWrappersArray.indexOf(focusedCellWrapperRef.current);
+        // Previous or Next Cell Wrapper
+        const cellWrappersArray = Array.from(focusedRowRef?.current?.children || []);
+        const indexOfFocusedCellWrapper = cellWrappersArray.indexOf(focusedCellWrapperRef?.current);
 
-        if (cellWrappersArray[indexOfFocusedCellWrapper - 1]) {
+        if (cellWrappersArray[indexOfFocusedCellWrapper + directionIndex]) {
           // Last Cell
-          const focusedCellWrapper = cellWrappersArray[indexOfFocusedCellWrapper - 1];
+          const focusedCellWrapper = cellWrappersArray[indexOfFocusedCellWrapper + directionIndex];
           focusedCellWrapperRef.current = focusedCellWrapper;
 
-          const cellsArray = Array.from(focusedCellWrapper.children || []);
-          const focusedCell = cellsArray[cellsArray.length - 1];
+          const cellsArray = Array.from(focusedCellWrapper?.children || []);
+          const focusedCell = cellsArray[direction === 'right' ? 0 : cellsArray.length - 1];
           focusedCellRef.current = focusedCell;
           focusedCell.focus();
+        } else {
+          if (rowJump) {
+            rowNavigate(event, 'down');
+            changeNavigationToCells(event, true);
+          }
         }
       }
     }
 
-    // Move to the down and up cell
-    if (config.shortcuts.table.cell.moveUp === e.key || config.shortcuts.table.cell.moveDown === e.key) {
-      e.preventDefault();
+    if (direction === 'top' || direction === 'down') {
+      const directionIndex = direction === 'up' ? -1 : 1;
 
-      const direction = e.key === config.shortcuts.table.cell.moveDown ? 1 : -1;
+      const rowsArray = Array.from(bodyScrollContainerRef?.current?.children || []);
+      const indexOfFocusedRow = rowsArray.indexOf(focusedRowRef?.current);
 
-      const rowsArray = Array.from(bodyScrollContainerRef.current.children || []);
-      const indexOfFocusedRow = rowsArray.indexOf(focusedRowRef.current);
+      const cellWrappersArray = Array.from(focusedRowRef?.current?.children || []);
+      const indexOfFocusedCellWrapper = cellWrappersArray.indexOf(focusedCellWrapperRef?.current);
 
-      const cellWrappersArray = Array.from(focusedRowRef.current.children || []);
-      const indexOfFocusedCellWrapper = cellWrappersArray.indexOf(focusedCellWrapperRef.current);
+      const cellsArray = Array.from(focusedCellWrapperRef?.current.children || []);
+      const indexOfFocusedCell = cellsArray.indexOf(focusedCellRef?.current);
 
-      const cellsArray = Array.from(focusedCellWrapperRef.current.children || []);
-      const indexOfFocusedCell = cellsArray.indexOf(focusedCellRef.current);
-
-      if (rowsArray[indexOfFocusedRow + direction]) {
-        const focusedRow = rowsArray[indexOfFocusedRow + direction];
+      if (rowsArray[indexOfFocusedRow + directionIndex]) {
+        const focusedRow = rowsArray[indexOfFocusedRow + directionIndex];
         focusedRowRef.current = focusedRow;
 
         const focusedCellWrapper = focusedRow.children[indexOfFocusedCellWrapper];
@@ -200,27 +211,70 @@ const Table = ({ data }) => {
         focusedCell.focus();
       }
     }
+  };
+
+  const onFocus = (e) => {
+    if (e.target.classList.contains('table--row')) {
+      focusedRowRef.current = e.target;
+    }
+  }
+
+  const onRowKeyDown = (e, itemId) => {
+    // Call event function from props.
+    if (onRowKeyDownProps) {
+      onRowKeyDownProps(e, itemId);
+    }
+
+    // Prevent focus change
+    if (cellData) {
+      return;
+    }
+
+    // Row editing start. Will change navigation from rows only to cells.
+    if (isCellSelectable) {
+      changeNavigationToCells(e);
+    }
+
+    // Move to the next row.
+    if (checkEventKey(e, config.shortcuts.table.row.moveNext)) {
+      rowNavigate(e, 'down');
+    }
+
+    // Move to the previous row.
+    if (checkEventKey(e, config.shortcuts.table.row.movePrev)) {
+      rowNavigate(e, 'up');
+    }
+  }
+
+  const onCellKeyDown = (e, cellValue) => {
+    // Prevent focus change
+    if (cellData) {
+      return;
+    }
+
+    // Move to the next cell
+    if (checkEventKey(e, config.shortcuts.table.cell.moveNext)) {
+      cellNavigate(e, 'right');
+    }
+
+    // Move to the prev cell
+    if (checkEventKey(e, config.shortcuts.table.cell.movePrev)) {
+      cellNavigate(e,'left');
+    }
+
+    // Move to the up cell
+    if (checkEventKey(e, config.shortcuts.table.cell.moveUp)) {
+      cellNavigate(e, 'up');
+    }
+
+    // Move to the down cell
+    if (checkEventKey(e, config.shortcuts.table.cell.moveDown)) {
+      cellNavigate(e, 'down');
+    }
 
     // Switch cell to editable mode.
-    if (config.shortcuts.table.cell.editStart.key === e.key && e.ctrlKey === config.shortcuts.table.cell.editStart.ctrl) {
-      if (editableState.cellIndex === undefined && editableState.rowIndex === undefined && editableState.cellWrapperIndex === undefined) {
-        const rowsArray = Array.from(bodyScrollContainerRef.current.children || []);
-        const indexOfFocusedRow = rowsArray.indexOf(focusedRowRef.current);
-
-        const cellWrapperArray = Array.from(focusedRowRef.current.children || []);
-        const indexOfFocusedCellWrapper = cellWrapperArray.indexOf(focusedCellWrapperRef.current);
-
-        const cellsArray = Array.from(focusedCellWrapperRef.current.children || []);
-        const indexOfFocusedCell = cellsArray.indexOf(focusedCellRef.current);
-
-        setEditableState({
-          rowIndex: indexOfFocusedRow,
-          cellWrapperIndex: indexOfFocusedCellWrapper,
-          cellIndex: indexOfFocusedCell,
-        });
-
-        setCellData(cellValue);
-      }
+    if (checkEventKey(e, config.shortcuts.table.cell.editStart) && isEditable) {
+      cellSwitchToEditableMode(cellValue);
     }
   }
 
@@ -235,12 +289,17 @@ const Table = ({ data }) => {
   }
 
   const onInputKeyDown = (e, cellKey) => {
-    if (config.shortcuts.table.cell.editEnd.key === e.key && config.shortcuts.table.cell.editEnd.ctrl === e.ctrlKey) {
+    if (checkEventKey(e, config.shortcuts.table.cell.editEnd)) {
+      e.preventDefault();
+
       const rowsArray = Array.from(bodyScrollContainerRef.current.children || []);
       const cellWrappersArray = Array.from(rowsArray[editableState.rowIndex]?.children || []);
       const cellsArray = Array.from(cellWrappersArray[editableState.cellWrapperIndex]?.children || []);
 
-      updateObjectValue(copiedData, `[${editableState.rowIndex}].${cellKey}`, () => cellData);
+      setCopiedData((prevData) => {
+        const data = cloneDeep(prevData);
+        return updateObjectValue(data, `[${editableState.rowIndex}].${cellKey}`, () => cellData);
+      });
 
       focusedRowRef.current = rowsArray[editableState.rowIndex];
       focusedCellWrapperRef.current = cellWrappersArray[editableState.cellWrapperIndex];
@@ -254,7 +313,7 @@ const Table = ({ data }) => {
 
       setCellData(null);
 
-      focusedCellRef.current?.focus();
+      cellNavigate(e, 'right', true);
     }
   }
 
@@ -293,12 +352,13 @@ const Table = ({ data }) => {
             >
               {copiedData?.map((item, rowIndex) => (
                 <div
-                  key={item.id}
+                  key={item[idProperty]}
                   tabIndex={0}
                   className="table--row"
                   onFocus={onFocus}
-                  onBlur={onBlur}
-                  onKeyDown={onRowKeyDown}
+                  onKeyDown={(e) => {
+                    onRowKeyDown(e, item[idProperty])
+                  }}
                 >
                   {source.columns.map((column, cellWrapperIndex) => (
                     <div
@@ -309,9 +369,9 @@ const Table = ({ data }) => {
                         maxWidth: `${100 / source.columns.length}%`,
                       }}
                     >
-                      {column.dataKey.map((key, cellIndex) => (
+                      {column.dataKey.map((cellDataKey, cellIndex) => (
                         <div
-                          key={key}
+                          key={cellDataKey}
                           tabIndex={-1}
                           className="table--row-cell"
                           style={{
@@ -319,7 +379,7 @@ const Table = ({ data }) => {
                             maxWidth: `${100 / column.dataKey.length}%`,
                           }}
                           onKeyDown={(e) => {
-                            onCellKeyDown(e, getObjectValue(item, key))
+                            onCellKeyDown(e, getObjectValue(item, cellDataKey))
                           }}
                           onClick={onCellClick}
                         >
@@ -328,16 +388,14 @@ const Table = ({ data }) => {
                               className="table--row-cell__input"
                               type="text"
                               value={cellData}
-                              onChange={(e) => {
-                                handleChangeCellValue(e, rowIndex, key);
-                              }}
+                              onChange={handleChangeCellValue}
                               onKeyDown={(e) => {
-                                onInputKeyDown(e, key);
+                                onInputKeyDown(e, cellDataKey);
                               }}
                             />
                           ) : (
                             <div className="table--row-cell__content">
-                              {getObjectValue(item, key)}
+                              {getObjectValue(item, cellDataKey)}
                             </div>
                           )}
                           <div className="table--row-cell__focus" />
@@ -356,7 +414,15 @@ const Table = ({ data }) => {
 };
 
 Table.propTypes = {
+  idProperty: PropTypes.string.isRequired,
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  isCellSelectable: PropTypes.bool,
+  isEditable: PropTypes.bool,
 };
+
+Table.defaultProps = {
+  isCellSelectable: false,
+  isEditable: false,
+}
 
 export default Table;
