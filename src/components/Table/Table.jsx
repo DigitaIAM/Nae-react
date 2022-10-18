@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import { get as getObjectValue, cloneDeep, update as updateObjectValue } from 'lodash';
 import { checkEventKey, createEmptyObjectCopy, isObjectEmpty } from './helpers';
+import { writeToLocalStorage, getFromLocalStorage } from '../../global/helpers';
 import config from '../../config';
 import './Table.scss';
 
@@ -30,7 +31,7 @@ const source = {
   ]
 }
 
-const Table = ({ idProperty, data, isCellSelectable, isEditable, onRowKeyDown: onRowKeyDownProps }) => {
+const Table = ({ idProperty, tableId, data, isCellSelectable, isEditable, onRowKeyDown: onRowKeyDownProps }) => {
   const bodyScrollContainerRef = useRef();
   const focusedRowRef = useRef();
   const focusedCellWrapperRef = useRef();
@@ -59,7 +60,7 @@ const Table = ({ idProperty, data, isCellSelectable, isEditable, onRowKeyDown: o
 
   // Empty row controller.
   useEffect(() => {
-    if (copiedData) {
+    if (copiedData && isEditable) {
       if (isObjectEmpty(copiedData[copiedData.length - 1]) && isObjectEmpty(copiedData[copiedData.length - 2])) {
         setCopiedData((prevData) => {
           const data = cloneDeep(prevData);
@@ -80,6 +81,42 @@ const Table = ({ idProperty, data, isCellSelectable, isEditable, onRowKeyDown: o
 
           return data;
         });
+      }
+    }
+  }, [copiedData]);
+
+  // Focused first table row
+  useEffect(() => {
+    if (copiedData) {
+      const prevFocusedRowIndex = getFromLocalStorage(`${tableId}_focused_row_index`);
+      const prevFocusedCellWrapperIndex = getFromLocalStorage(`${tableId}_focused_cell_wrapper_index`);
+      const prevFocusedCellIndex = getFromLocalStorage(`${tableId}_focused_cell_index`);
+
+      const rowsArray = Array.from(bodyScrollContainerRef.current.children || []);
+      let focusedRow;
+
+      if (prevFocusedRowIndex !== undefined) {
+        focusedRow = rowsArray[prevFocusedRowIndex];
+      } else {
+        focusedRow = rowsArray[0];
+      }
+
+      focusedRowRef.current = focusedRow;
+      focusedRow.focus();
+
+      if (isEditable) {
+        if (prevFocusedCellWrapperIndex !== undefined && prevFocusedCellIndex !== undefined) {
+          const cellWrappersArray = Array.from(focusedRow.children || []);
+          const focusedCellWrapper = cellWrappersArray[prevFocusedCellWrapperIndex];
+
+          const cellsArray = Array.from(focusedCellWrapper.children || []);
+          const focusedCell = cellsArray[prevFocusedCellIndex];
+
+          focusedCellWrapperRef.current = focusedCellWrapper;
+          focusedCellRef.current = focusedCell;
+
+          focusedCell.focus();
+        }
       }
     }
   }, [copiedData]);
@@ -105,6 +142,9 @@ const Table = ({ idProperty, data, isCellSelectable, isEditable, onRowKeyDown: o
       const cellsArray = Array.from(focusedCellWrapperRef?.current?.children || []);
       const indexOfFocusedCell = cellsArray.indexOf(focusedCellRef?.current);
 
+      writeToLocalStorage(`${tableId}_focused_cell_wrapper_index`, indexOfFocusedCellWrapper);
+      writeToLocalStorage(`${tableId}_focused_cell_index`, indexOfFocusedCell);
+
       setEditableState({
         rowIndex: indexOfFocusedRow,
         cellWrapperIndex: indexOfFocusedCellWrapper,
@@ -127,6 +167,9 @@ const Table = ({ idProperty, data, isCellSelectable, isEditable, onRowKeyDown: o
           const focusedCell = focusedCellWrapper.children[0];
 
           if (focusedCell) {
+            writeToLocalStorage(`${tableId}_focused_cell_wrapper_index`, 0);
+            writeToLocalStorage(`${tableId}_focused_cell_index`, 0);
+
             focusedCellRef.current = focusedCell;
             focusedCell.focus();
           }
@@ -146,6 +189,9 @@ const Table = ({ idProperty, data, isCellSelectable, isEditable, onRowKeyDown: o
     if (rowsArray[indexOfFocusedRow + directionIndex]) {
       const focusedRow = rowsArray[indexOfFocusedRow + directionIndex];
       focusedRowRef.current = focusedRow;
+
+      writeToLocalStorage(`${tableId}_focused_row_index`, indexOfFocusedRow + directionIndex);
+
       focusedRow.focus();
     }
   };
@@ -158,9 +204,13 @@ const Table = ({ idProperty, data, isCellSelectable, isEditable, onRowKeyDown: o
 
     if (direction === 'left' || direction === 'right') {
       const directionIndex = direction === 'left' ? -1 : 1;
+
       // Previous or Next Cell
       if (cellsArray[indexOfFocusedCell + directionIndex]) {
         const focusedCell = cellsArray[indexOfFocusedCell + directionIndex];
+
+        writeToLocalStorage(`${tableId}_focused_cell_index`, indexOfFocusedCell + directionIndex);
+
         focusedCellRef.current = focusedCell;
         focusedCell.focus();
       } else {
@@ -175,6 +225,10 @@ const Table = ({ idProperty, data, isCellSelectable, isEditable, onRowKeyDown: o
 
           const cellsArray = Array.from(focusedCellWrapper?.children || []);
           const focusedCell = cellsArray[direction === 'right' ? 0 : cellsArray.length - 1];
+
+          writeToLocalStorage(`${tableId}_focused_cell_wrapper_index`, indexOfFocusedCellWrapper + directionIndex);
+          writeToLocalStorage(`${tableId}_focused_cell_index`, direction === 'right' ? 0 : cellsArray.length - 1);
+
           focusedCellRef.current = focusedCell;
           focusedCell.focus();
         } else {
@@ -286,6 +340,14 @@ const Table = ({ idProperty, data, isCellSelectable, isEditable, onRowKeyDown: o
     focusedRowRef.current = focusedRow;
     focusedCellWrapperRef.current = focusedCellWrapper;
     focusedCellRef.current = focusedCell;
+
+    const focusedRowIndex = Array.from(bodyScrollContainerRef.current.children || []).indexOf(focusedRow);
+    const focusedCellWrapperIndex = Array.from(focusedRow.children || []).indexOf(focusedCellWrapper);
+    const focusedCellIndex = Array.from(focusedCellWrapper.children || []).indexOf(focusedCell);
+
+    writeToLocalStorage(`${tableId}_focused_row_index`, focusedRowIndex);
+    writeToLocalStorage(`${tableId}_focused_cell_wrapper_index`, focusedCellWrapperIndex);
+    writeToLocalStorage(`${tableId}_focused_cell_index`, focusedCellIndex);
   }
 
   const onInputKeyDown = (e, cellKey) => {
@@ -415,6 +477,7 @@ const Table = ({ idProperty, data, isCellSelectable, isEditable, onRowKeyDown: o
 
 Table.propTypes = {
   idProperty: PropTypes.string.isRequired,
+  tableId: PropTypes.string.isRequired,
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   isCellSelectable: PropTypes.bool,
   isEditable: PropTypes.bool,

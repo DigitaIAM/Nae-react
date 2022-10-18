@@ -42,6 +42,7 @@ const DocumentsPage = props => {
         <div className="documents-page--content">
           <Table
             idProperty="_id"
+            tableId="documents_table"
             data={data}
             onRowKeyDown={onTableRowKeyDown}
             isCellSelectable
