@@ -54,6 +54,7 @@ const Search = ({ suggestions, baseUrl, placeholder, focusKey }) => {
       <div className="search-input--wrapper">
         <input
           ref={inputRef}
+          tabIndex={0}
           className="search-input"
           type="text"
           value={value}

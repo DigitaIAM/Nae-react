@@ -45,9 +45,11 @@ const DocumentsPage = props => {
             tableId="documents_table"
             data={data}
             onRowKeyDown={onTableRowKeyDown}
+            maxHeight="450"
             isCellSelectable
             isEditable
           />
+          <input tabIndex={0} type="text"/>
         </div>
       </div>
     </div>

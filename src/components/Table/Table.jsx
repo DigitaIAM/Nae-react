@@ -31,7 +31,7 @@ const source = {
   ]
 }
 
-const Table = ({ idProperty, tableId, data, isCellSelectable, isEditable, onRowKeyDown: onRowKeyDownProps }) => {
+const Table = ({ idProperty, tableId, data, maxHeight, isCellSelectable, isEditable, onRowKeyDown: onRowKeyDownProps }) => {
   const bodyScrollContainerRef = useRef();
   const focusedRowRef = useRef();
   const focusedCellWrapperRef = useRef();
@@ -85,12 +85,13 @@ const Table = ({ idProperty, tableId, data, isCellSelectable, isEditable, onRowK
     }
   }, [copiedData]);
 
-  // Focused first table row
+  // Focused first table row and set body scroll
   useEffect(() => {
     if (copiedData) {
       const prevFocusedRowIndex = getFromLocalStorage(`${tableId}_focused_row_index`);
       const prevFocusedCellWrapperIndex = getFromLocalStorage(`${tableId}_focused_cell_wrapper_index`);
       const prevFocusedCellIndex = getFromLocalStorage(`${tableId}_focused_cell_index`);
+      const prevScrollPosition = getFromLocalStorage(`${tableId}_table_body_scroll_position`);
 
       const rowsArray = Array.from(bodyScrollContainerRef.current.children || []);
       let focusedRow;
@@ -102,6 +103,7 @@ const Table = ({ idProperty, tableId, data, isCellSelectable, isEditable, onRowK
       }
 
       focusedRowRef.current = focusedRow;
+      focusedRowRef.current.scrollTop = prevScrollPosition;
       focusedRow.focus();
 
       if (isEditable) {
@@ -130,6 +132,33 @@ const Table = ({ idProperty, tableId, data, isCellSelectable, isEditable, onRowK
       }
     }
   }, [editableState.rowIndex, editableState.cellIndex, editableState.cellWrapperIndex]);
+
+  // Programming focus changing
+  useEffect(() => {
+    const handleChangeFocus = (e) => {
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        const focusableElements = '[tabindex]:not([disabled]):not([tabindex="-1"])';
+
+        const focusable = Array.prototype.filter.call(document.body.querySelectorAll(focusableElements), (element) => element.offsetWidth > 0 || element.offsetHeight || document.activeElement === element);
+
+        const isRowActive = document.activeElement.classList.contains('table--row') || document.activeElement.classList.contains('table--row-cell');
+        const activeIndex = document.activeElement ? focusable.indexOf(isRowActive ? bodyScrollContainerRef.current : document.activeElement) : 0;
+        const direction = e.shiftKey ? -1 : 1;
+
+        if ((e.shiftKey && activeIndex + direction > -1) || (!e.shiftKey && activeIndex + direction < focusable.length)) {
+          const nextElement = focusable[activeIndex + direction];
+          nextElement.focus();
+        }
+      }
+    }
+
+    document.body.addEventListener('keydown', handleChangeFocus);
+
+    return () => {
+      document.body.removeEventListener('keydown', handleChangeFocus);
+    }
+  }, []);
 
   const cellSwitchToEditableMode = (cellValue) => {
     if (editableState?.cellIndex === undefined && editableState?.rowIndex === undefined && editableState?.cellWrapperIndex === undefined) {
@@ -333,21 +362,23 @@ const Table = ({ idProperty, tableId, data, isCellSelectable, isEditable, onRowK
   }
 
   const onCellClick = (e) => {
-    const focusedCell = e.target.parentElement;
-    const focusedCellWrapper = focusedCell.parentElement;
-    const focusedRow = focusedCellWrapper.parentElement;
+    if (isEditable) {
+      const focusedCell = e.target.parentElement;
+      const focusedCellWrapper = focusedCell.parentElement;
+      const focusedRow = focusedCellWrapper.parentElement;
 
-    focusedRowRef.current = focusedRow;
-    focusedCellWrapperRef.current = focusedCellWrapper;
-    focusedCellRef.current = focusedCell;
+      focusedRowRef.current = focusedRow;
+      focusedCellWrapperRef.current = focusedCellWrapper;
+      focusedCellRef.current = focusedCell;
 
-    const focusedRowIndex = Array.from(bodyScrollContainerRef.current.children || []).indexOf(focusedRow);
-    const focusedCellWrapperIndex = Array.from(focusedRow.children || []).indexOf(focusedCellWrapper);
-    const focusedCellIndex = Array.from(focusedCellWrapper.children || []).indexOf(focusedCell);
+      const focusedRowIndex = Array.from(bodyScrollContainerRef.current.children || []).indexOf(focusedRow);
+      const focusedCellWrapperIndex = Array.from(focusedRow.children || []).indexOf(focusedCellWrapper);
+      const focusedCellIndex = Array.from(focusedCellWrapper.children || []).indexOf(focusedCell);
 
-    writeToLocalStorage(`${tableId}_focused_row_index`, focusedRowIndex);
-    writeToLocalStorage(`${tableId}_focused_cell_wrapper_index`, focusedCellWrapperIndex);
-    writeToLocalStorage(`${tableId}_focused_cell_index`, focusedCellIndex);
+      writeToLocalStorage(`${tableId}_focused_row_index`, focusedRowIndex);
+      writeToLocalStorage(`${tableId}_focused_cell_wrapper_index`, focusedCellWrapperIndex);
+      writeToLocalStorage(`${tableId}_focused_cell_index`, focusedCellIndex);
+    }
   }
 
   const onInputKeyDown = (e, cellKey) => {
@@ -383,6 +414,21 @@ const Table = ({ idProperty, tableId, data, isCellSelectable, isEditable, onRowK
     setCellData(e.target.value);
   }
 
+  const onTableBodyScroll = (e) => {
+    writeToLocalStorage(`${tableId}_table_body_scroll_position`, e.target.scrollTop);
+  };
+
+  const onTableFocus = (e) => {
+    const rowsArray = Array.from(bodyScrollContainerRef.current?.children || []);
+
+    const prevFocusedRowIndex = getFromLocalStorage(`${tableId}_focused_row_index`);
+
+    const firstRow = rowsArray[prevFocusedRowIndex || 0];
+
+    focusedRowRef.current = firstRow;
+    firstRow.focus();
+  }
+
   return (
     <div className="table-wrapper">
       <div className="table-body">
@@ -411,11 +457,17 @@ const Table = ({ idProperty, tableId, data, isCellSelectable, isEditable, onRowK
             <div
               ref={bodyScrollContainerRef}
               className="table--scroll-container-wrapper"
+              tabIndex={0}
+              style={{
+                maxHeight: `${maxHeight}px`,
+              }}
+              onFocus={onTableFocus}
+              onScroll={onTableBodyScroll}
             >
               {copiedData?.map((item, rowIndex) => (
                 <div
                   key={item[idProperty]}
-                  tabIndex={0}
+                  tabIndex={-1}
                   className="table--row"
                   onFocus={onFocus}
                   onKeyDown={(e) => {
@@ -479,11 +531,13 @@ Table.propTypes = {
   idProperty: PropTypes.string.isRequired,
   tableId: PropTypes.string.isRequired,
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   isCellSelectable: PropTypes.bool,
   isEditable: PropTypes.bool,
 };
 
 Table.defaultProps = {
+  maxHeight: 'unset',
   isCellSelectable: false,
   isEditable: false,
 }

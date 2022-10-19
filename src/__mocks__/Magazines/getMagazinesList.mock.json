@@ -94,6 +94,1322 @@
         "currency": "$"
       },
       "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
+    },
+    {
+      "_id": "6324402c886335e1c9bebdbd",
+      "docType": {
+        "_id": "6324402ca72b21776d9b7c5b",
+        "label": "VETRON"
+      },
+      "date": "2017-01-24T06:13:27",
+      "number": 0,
+      "counterparty": {
+        "company": {
+          "_id": "6324402c421c20ab84809fa5",
+          "label": "ENTALITY"
+        },
+        "document": {
+          "_id": "6324402c2bfa7625bbcddf41",
+          "label": "GEEKWAGON"
+        }
+      },
+      "goods": [
+        {
+          "_id": "6324402ca98dc75ff3a70fa7",
+          "label": "PLAYCE",
+          "qty": {
+            "number": 36,
+            "uom": "kg"
+          },
+          "price": {
+            "number": 2,
+            "currency": "$",
+            "per": {
+              "number": 1,
+              "uom": "kg"
+            }
+          },
+          "cost": {
+            "number": 20,
+            "currency": "$"
+          },
+          "note": ""
+        }
+      ],
+      "cost": {
+        "number": 20,
+        "currency": "$"
+      },
+      "note": "Спросить Васю"
     }
   ]
 }

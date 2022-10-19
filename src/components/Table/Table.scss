@@ -38,6 +38,8 @@
 
       .table--virtual-list {
         .table--scroll-container-wrapper {
+          overflow-y: auto;
+
           .table--row {
             display: flex;
             flex-flow: row;
