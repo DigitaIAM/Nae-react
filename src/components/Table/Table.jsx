@@ -6,36 +6,13 @@ import { writeToLocalStorage, getFromLocalStorage } from '../../global/helpers';
 import config from '../../config';
 import './Table.scss';
 
-const source = {
-  columns: [
-    {
-      id: 'date',
-      name: 'Дата',
-      dataKey: ['date'],
-    },
-    {
-      id: 'counterparty',
-      name: 'Контрагент',
-      dataKey: ['counterparty.company.label'],
-    },
-    {
-      id: 'sum',
-      name: 'Сумма',
-      dataKey: ['cost.number', 'cost.currency']
-    },
-    {
-      id: 'note',
-      name: 'Комментарий',
-      dataKey: ['note'],
-    }
-  ]
-}
-
-const Table = ({ idProperty, tableId, data, maxHeight, isCellSelectable, isEditable, onRowKeyDown: onRowKeyDownProps }) => {
+const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, isCellSelectable, isEditable, onRowKeyDown: onRowKeyDownProps, onRowClick: onRowClickProps }) => {
   const bodyScrollContainerRef = useRef();
   const focusedRowRef = useRef();
   const focusedCellWrapperRef = useRef();
   const focusedCellRef = useRef();
+
+  const [bodyScrollWidth, setBodyScrollWidth] = useState(0);
 
   const [copiedData, setCopiedData] = useState(null);
   const [editableState, setEditableState] = useState({
@@ -48,7 +25,7 @@ const Table = ({ idProperty, tableId, data, maxHeight, isCellSelectable, isEdita
   // Make the deep copy of the data array
   useEffect(() => {
     if (data) {
-      const dataClone = cloneDeep(data);
+      const dataClone = cloneDeep(data || []);
 
       if (isEditable) {
         dataClone.push(createEmptyObjectCopy(dataClone[0]));
@@ -148,6 +125,18 @@ const Table = ({ idProperty, tableId, data, maxHeight, isCellSelectable, isEdita
 
         if ((e.shiftKey && activeIndex + direction > -1) || (!e.shiftKey && activeIndex + direction < focusable.length)) {
           const nextElement = focusable[activeIndex + direction];
+
+          if (nextElement.classList.contains('table--scroll-container-wrapper')) {
+            const rowsArray = Array.from(bodyScrollContainerRef.current?.children || []);
+
+            const prevFocusedRowIndex = getFromLocalStorage(`${tableId}_focused_row_index`);
+
+            const firstRow = rowsArray[prevFocusedRowIndex || 0];
+
+            focusedRowRef.current = firstRow;
+            firstRow.focus();
+            return;
+          }
           nextElement.focus();
         }
       }
@@ -159,6 +148,11 @@ const Table = ({ idProperty, tableId, data, maxHeight, isCellSelectable, isEdita
       document.body.removeEventListener('keydown', handleChangeFocus);
     }
   }, []);
+
+  // Header width controller
+  useEffect(() => {
+    setBodyScrollWidth(bodyScrollContainerRef.current?.parentNode?.offsetWidth - bodyScrollContainerRef.current?.clientWidth);
+  }, [bodyScrollContainerRef.current, bodyScrollContainerRef.current]);
 
   const cellSwitchToEditableMode = (cellValue) => {
     if (editableState?.cellIndex === undefined && editableState?.rowIndex === undefined && editableState?.cellWrapperIndex === undefined) {
@@ -334,7 +328,6 @@ const Table = ({ idProperty, tableId, data, maxHeight, isCellSelectable, isEdita
     if (cellData) {
       return;
     }
-
     // Move to the next cell
     if (checkEventKey(e, config.shortcuts.table.cell.moveNext)) {
       cellNavigate(e, 'right');
@@ -363,7 +356,7 @@ const Table = ({ idProperty, tableId, data, maxHeight, isCellSelectable, isEdita
 
   const onCellClick = (e) => {
     if (isEditable) {
-      const focusedCell = e.target.parentElement;
+      const focusedCell = e.target.classList.contains('content-container') ? e.target.parentElement.parentElement : e.target.parentElement;
       const focusedCellWrapper = focusedCell.parentElement;
       const focusedRow = focusedCellWrapper.parentElement;
 
@@ -418,15 +411,16 @@ const Table = ({ idProperty, tableId, data, maxHeight, isCellSelectable, isEdita
     writeToLocalStorage(`${tableId}_table_body_scroll_position`, e.target.scrollTop);
   };
 
-  const onTableFocus = (e) => {
-    const rowsArray = Array.from(bodyScrollContainerRef.current?.children || []);
+  const onRowClick = (e, id) => {
+    const focusedCell = e.target.classList.contains('content-container') ? e.target.parentElement.parentElement : e.target.parentElement;
+    const focusedCellWrapper = focusedCell.parentElement;
+    const focusedRow = focusedCellWrapper.parentElement;
 
-    const prevFocusedRowIndex = getFromLocalStorage(`${tableId}_focused_row_index`);
+    const focusedRowIndex = Array.from(bodyScrollContainerRef.current.children || []).indexOf(focusedRow);
 
-    const firstRow = rowsArray[prevFocusedRowIndex || 0];
-
-    focusedRowRef.current = firstRow;
-    firstRow.focus();
+    focusedRowRef.current = focusedRow;
+    writeToLocalStorage(`${tableId}_focused_row_index`, focusedRowIndex);
+    onRowClickProps(e, id);
   }
 
   return (
@@ -435,7 +429,12 @@ const Table = ({ idProperty, tableId, data, maxHeight, isCellSelectable, isEdita
         <div className="table-layout">
           <div className="table--header-layout">
             <div className="table--header-wrapper">
-              <div className="table--header">
+              <div
+                className="table--header"
+                style={{
+                  width: `calc(100% - ${bodyScrollWidth}px)`
+                }}
+              >
                 {source.columns.map((column) => (
                   <div
                     key={column.id}
@@ -454,72 +453,86 @@ const Table = ({ idProperty, tableId, data, maxHeight, isCellSelectable, isEdita
             </div>
           </div>
           <div className="table--virtual-list">
-            <div
-              ref={bodyScrollContainerRef}
-              className="table--scroll-container-wrapper"
-              tabIndex={0}
-              style={{
-                maxHeight: `${maxHeight}px`,
-              }}
-              onFocus={onTableFocus}
-              onScroll={onTableBodyScroll}
-            >
-              {copiedData?.map((item, rowIndex) => (
-                <div
-                  key={item[idProperty]}
-                  tabIndex={-1}
-                  className="table--row"
-                  onFocus={onFocus}
-                  onKeyDown={(e) => {
-                    onRowKeyDown(e, item[idProperty])
-                  }}
-                >
-                  {source.columns.map((column, cellWrapperIndex) => (
-                    <div
-                      key={column.id}
-                      className="table--row-cell-wrapper"
-                      style={{
-                        flex: `0 1 ${100 / source.columns.length}%`,
-                        maxWidth: `${100 / source.columns.length}%`,
-                      }}
-                    >
-                      {column.dataKey.map((cellDataKey, cellIndex) => (
-                        <div
-                          key={cellDataKey}
-                          tabIndex={-1}
-                          className="table--row-cell"
-                          style={{
-                            flex: `0 1 ${100 / column.dataKey.length}%`,
-                            maxWidth: `${100 / column.dataKey.length}%`,
-                          }}
-                          onKeyDown={(e) => {
-                            onCellKeyDown(e, getObjectValue(item, cellDataKey))
-                          }}
-                          onClick={onCellClick}
-                        >
-                          {editableState.cellIndex === cellIndex && editableState.cellWrapperIndex === cellWrapperIndex && editableState.rowIndex === rowIndex ? (
-                            <input
-                              className="table--row-cell__input"
-                              type="text"
-                              value={cellData}
-                              onChange={handleChangeCellValue}
-                              onKeyDown={(e) => {
-                                onInputKeyDown(e, cellDataKey);
-                              }}
-                            />
-                          ) : (
-                            <div className="table--row-cell__content">
-                              {getObjectValue(item, cellDataKey)}
-                            </div>
-                          )}
-                          <div className="table--row-cell__focus" />
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
+            {error ? (
+              <div>ERROR</div>
+            ) : (
+              <>
+                {loading || !data ? (
+                  <div>LOADING</div>
+                ) : (
+                  <div
+                    ref={bodyScrollContainerRef}
+                    className="table--scroll-container-wrapper"
+                    tabIndex={0}
+                    style={{
+                      maxHeight: `${maxHeight}px`,
+                    }}
+                    onScroll={onTableBodyScroll}
+                  >
+                    {copiedData?.map((item, rowIndex) => (
+                      <div
+                        key={item[idProperty]}
+                        tabIndex={-1}
+                        className="table--row"
+                        onFocus={onFocus}
+                        onClick={(e) => {
+                          onRowClick(e, item[idProperty]);
+                        }}
+                        onKeyDown={(e) => {
+                          onRowKeyDown(e, item[idProperty]);
+                        }}
+                      >
+                        {source.columns.map((column, cellWrapperIndex) => (
+                          <div
+                            key={column.id}
+                            className="table--row-cell-wrapper"
+                            style={{
+                              flex: `0 1 ${100 / source.columns.length}%`,
+                              maxWidth: `${100 / source.columns.length}%`,
+                            }}
+                          >
+                            {column.dataKey.map((cellDataKey, cellIndex) => (
+                              <div
+                                key={cellDataKey}
+                                tabIndex={isEditable ? -1 : undefined}
+                                className="table--row-cell"
+                                style={{
+                                  flex: `0 1 ${100 / column.dataKey.length}%`,
+                                  maxWidth: `${100 / column.dataKey.length}%`,
+                                }}
+                                onKeyDown={(e) => {
+                                  onCellKeyDown(e, getObjectValue(item, cellDataKey))
+                                }}
+                                onClick={onCellClick}
+                              >
+                                {editableState.cellIndex === cellIndex && editableState.cellWrapperIndex === cellWrapperIndex && editableState.rowIndex === rowIndex ? (
+                                  <input
+                                    className="table--row-cell__input"
+                                    type="text"
+                                    value={cellData}
+                                    onChange={handleChangeCellValue}
+                                    onKeyDown={(e) => {
+                                      onInputKeyDown(e, cellDataKey);
+                                    }}
+                                  />
+                                ) : (
+                                  <div className="table--row-cell__content">
+                              <span className="content-container">
+                                {getObjectValue(item, cellDataKey)}
+                              </span>
+                                  </div>
+                                )}
+                                <div className="table--row-cell__focus" />
+                              </div>
+                            ))}
+                          </div>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -530,13 +543,14 @@ const Table = ({ idProperty, tableId, data, maxHeight, isCellSelectable, isEdita
 Table.propTypes = {
   idProperty: PropTypes.string.isRequired,
   tableId: PropTypes.string.isRequired,
-  data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  data: PropTypes.arrayOf(PropTypes.shape({})),
   maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   isCellSelectable: PropTypes.bool,
   isEditable: PropTypes.bool,
 };
 
 Table.defaultProps = {
+  data: null,
   maxHeight: 'unset',
   isCellSelectable: false,
   isEditable: false,

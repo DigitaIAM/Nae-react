@@ -1,94 +1,46 @@
 @import 'src/global/styles/colors';
 
 .input-wrapper {
-  display: flex;
   width: 100%;
-
-  &.col-12 {
-    flex: 0 1 100%;
-    max-width: 100%;
-  }
-
-  &.col-11 {
-    flex: 0 1 91.63%;
-    max-width: 91.63%;
-  }
-
-  &.col-10 {
-    flex: 0 1 83.33%;
-    max-width: 83.33%;
-  }
-
-  &.col-9 {
-    flex: 0 1 75%;
-    max-width: 75%;
-  }
-
-  &.col-8 {
-    flex: 0 1 66.66%;
-    max-width: 66.66%;
-  }
-
-  &.col-7 {
-    flex: 0 1 58.31%;
-    max-width: 58.31%;
-  }
-
-  &.col-6 {
-    flex: 0 1 50%;
-    max-width: 50%;
-  }
-
-  &.col-5 {
-    flex: 0 1 41.66%;
-    max-width: 41.66%;
-  }
-
-  &.col-4 {
-    flex: 0 1 33.33%;
-    max-width: 33.33%;
-  }
-
-  &.col-3 {
-    flex: 0 1 25%;
-    max-width: 25%;
-  }
-
-  &.col-2 {
-    flex: 0 1 16.66%;
-    max-width: 16.66%;
-  }
-
-  &.col-1 {
-    flex: 0 1 8.33%;
-    max-width: 8.33%;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   .input {
     width: 100%;
     border: 1px solid $input-border;
     border-radius: 4px;
     padding: 12px;
-    font-size: 14px;
-    line-height: 19px;
     color: $input-color;
-    font-weight: 600;
 
     &::placeholder {
       color: $input-placeholder-color;
-    }
-
-    .MuiInputBase-root {
-      padding: 0;
-      border-radius: unset;
       font-size: 14px;
       line-height: 19px;
-      color: $input-color;
-      font-weight: 600;
+    }
+  }
+
+  .MuiFormControl-root {
+    width: 100%;
+    border: none;
+
+    .MuiInputBase-root {
+      border: 1px solid $input-border;
+      border-radius: 4px;
+
+      &.Mui-focused {
+
+      }
 
       .MuiInputBase-input {
-        padding: 0;
-        border: none;
+        padding: 12px;
+        color: $input-color;
+
+        &::placeholder {
+          color: $input-placeholder-color;
+          font-size: 14px;
+          line-height: 19px;
+        }
       }
 
       .MuiInputAdornment-root {
@@ -99,7 +51,7 @@
         }
       }
 
-      fieldset {
+      .MuiOutlinedInput-notchedOutline {
         border: none;
       }
     }

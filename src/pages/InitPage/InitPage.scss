@@ -1,0 +1,61 @@
+@import 'src/global/styles/colors';
+
+.application-wrapper {
+  width: 100%;
+
+  .application-header {
+    width: 100%;
+    background-color: $header-background;
+    padding: 15px 25px;
+  }
+
+  .application-body {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+
+    .application-navigation {
+      background-color: $navigation-background;
+      border-right: 1px solid $navigation-border;
+      position: sticky;
+      left: 0;
+      top: 0;
+      height: 100%;
+      min-height: calc(100vh - 65px);
+      padding: 20px 0;
+
+      .application-navigation--item {
+        padding: 0 15px;
+
+        &.active {
+          border-right: 1px solid $navigation-item-background__active;
+        }
+
+        .application-navigation--item__link {
+          padding: 20px;
+          border-radius: 4px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          svg {
+            width: 24px;
+            height: 24px;
+            color: $navigation-icon-color;
+          }
+
+          &:hover, &:focus {
+            background-color: $navigation-item-background__hover;
+          }
+        }
+      }
+    }
+
+    .application-content {
+      width: 100%;
+      padding: 50px 65px;
+    }
+  }
+}
