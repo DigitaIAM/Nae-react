@@ -39,6 +39,27 @@
           "currency": "$"
         },
         "note": "Magna anim culpa occaecat aliqua velit incididunt Lorem. Eiusmod voluptate occaecat mollit minim ullamco labore ullamco in. Velit dolor eu ullamco commodo nostrud. Cupidatat exercitation laboris laborum eu eu exercitation in fugiat do. Eu laborum esse commodo consequat officia eiusmod cillum tempor. Dolore et nostrud esse enim exercitation anim amet ea Lorem laboris. Occaecat ex esse ea exercitation enim do. Veniam id incididunt fugiat amet id duis. Amet reprehenderit nostrud labore fugiat ex tempor pariatur irure nisi. Labore cillum esse aliqua eiusmod."
+      },
+      {
+        "_id": "34324df434323dee",
+        "label": "ZAYA",
+        "qty": {
+          "number": 30,
+          "uom": "kg"
+        },
+        "price": {
+          "number": 2,
+          "currency": "$",
+          "per": {
+            "number": 1,
+            "uom": "kg"
+          }
+        },
+        "cost": {
+          "number": 174,
+          "currency": "$"
+        },
+        "note": "Magna anim culpa occaecat aliqua velit incididunt Lorem. Eiusmod voluptate occaecat mollit minim ullamco labore ullamco in. Velit dolor eu ullamco commodo nostrud. Cupidatat exercitation laboris laborum eu eu exercitation in fugiat do. Eu laborum esse commodo consequat officia eiusmod cillum tempor. Dolore et nostrud esse enim exercitation anim amet ea Lorem laboris. Occaecat ex esse ea exercitation enim do. Veniam id incididunt fugiat amet id duis. Amet reprehenderit nostrud labore fugiat ex tempor pariatur irure nisi. Labore cillum esse aliqua eiusmod."
       }
     ],
     "cost": {

@@ -64,7 +64,7 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
 
   // Focused first table row and set body scroll
   useEffect(() => {
-    if (copiedData) {
+    if (data && copiedData) {
       const prevFocusedRowIndex = getFromLocalStorage(`${tableId}_focused_row_index`);
       const prevFocusedCellWrapperIndex = getFromLocalStorage(`${tableId}_focused_cell_wrapper_index`);
       const prevFocusedCellIndex = getFromLocalStorage(`${tableId}_focused_cell_index`);
@@ -98,7 +98,7 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
         }
       }
     }
-  }, [copiedData]);
+  }, [data]);
 
   // Set focus on editable cell input
   useEffect(() => {
