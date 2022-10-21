@@ -1,5 +1,12 @@
 export default {
   shortcuts: {
+    document: {
+      goBack: {
+        key: 'Esc',
+        ctrl: false,
+        shift: false,
+      },
+    },
     table: {
       row: {
         open: {

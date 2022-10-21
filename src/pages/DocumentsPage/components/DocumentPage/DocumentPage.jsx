@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {isArray} from 'lodash';
+import {useNavigate} from 'react-router-dom';
 import {useGetMagazineQuery} from '../../../../global/services/magazinesService';
-import './DocumentPage.scss';
 import Table from '../../../../components/Table/Table';
 import Input from '../../../../components/Input';
+import config from '../../../../config';
+import {checkEventKey} from '../../../../components/Table/helpers';
+import './DocumentPage.scss';
 
 const source = [
   [
@@ -66,8 +69,26 @@ const source = [
   }
 ];
 
-const DocumentPage = props => {
+const DocumentPage = () => {
+  const navigate = useNavigate();
+
   const { data: documentData, isLoading: isDocumentLoading, error: documentError } = useGetMagazineQuery();
+
+  useEffect(() => {
+    const handleGoBackOnKeyDown = (e) => {
+      if(checkEventKey(e, config.shortcuts.document.goBack)) {
+        e.preventDefault();
+
+        navigate('/documents');
+      }
+    }
+
+    document.addEventListener('keydown', handleGoBackOnKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleGoBackOnKeyDown);
+    }
+  }, []);
 
   return (
     <div className="document-page-wrapper">

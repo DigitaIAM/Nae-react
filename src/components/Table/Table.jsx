@@ -80,7 +80,7 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
       }
 
       focusedRowRef.current = focusedRow;
-      focusedRowRef.current.scrollTop = prevScrollPosition;
+      bodyScrollContainerRef.current.scrollTop = prevScrollPosition;
       focusedRow.focus();
 
       if (isEditable) {
@@ -420,7 +420,10 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
 
     focusedRowRef.current = focusedRow;
     writeToLocalStorage(`${tableId}_focused_row_index`, focusedRowIndex);
-    onRowClickProps(e, id);
+
+    if (onRowClickProps) {
+      onRowClickProps(e, id);
+    }
   }
 
   return (
