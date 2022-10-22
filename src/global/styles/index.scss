@@ -1,7 +1,33 @@
+@import 'colors';
+
 *, html, body {
   margin: 0;
   padding: 0;
   text-decoration: none;
   outline: none;
   box-sizing: border-box;
+}
+
+.btn {
+  padding: 12px 170px;
+  font-size: 14px;
+  line-height: 20px;
+  border: 1px solid;
+  border-radius: 4px;
+
+  &:focus {
+    box-shadow: 0 0 10px 0 #3171e2;
+  }
+
+  &-primary {
+    color: $btn-text-color-primary;
+    border-color: $btn-border-color-primary;
+    background-color: $btn-background-color-primary;
+  }
+
+  &-secondary {
+    color: $btn-text-color-secondary;
+    border-color: $btn-border-color-secondary;
+    background-color: $btn-background-color-secondary;
+  }
 }

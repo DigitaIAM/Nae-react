@@ -2,10 +2,12 @@ export default {
   shortcuts: {
     document: {
       goBack: {
-        key: 'Esc',
+        key: 'Escape',
         ctrl: false,
         shift: false,
       },
+      focusableElementsByTab: '[tabindex]:not([disabled]):not([tabindex="-1"]), .MuiButtonBase-root, .MuiInputBase-input, .btn',
+      focusableElementsByEnter: 'input[tabindex]:not([disabled]):not([tabindex="-1"]):not(.search-input), .MuiInputBase-input, .table--scroll-container-wrapper',
     },
     table: {
       row: {

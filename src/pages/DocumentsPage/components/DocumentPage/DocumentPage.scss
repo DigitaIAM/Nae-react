@@ -16,5 +16,13 @@
       justify-content: flex-start;
       margin-bottom: 30px;
     }
+
+    .document--footer {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 25px;
+      margin-top: 35px;
+    }
   }
 }

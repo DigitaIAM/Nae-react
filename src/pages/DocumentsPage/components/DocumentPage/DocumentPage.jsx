@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import PropTypes from 'prop-types';
 import {isArray} from 'lodash';
 import {useNavigate} from 'react-router-dom';
 import {useGetMagazineQuery} from '../../../../global/services/magazinesService';
@@ -74,6 +73,7 @@ const DocumentPage = () => {
 
   const { data: documentData, isLoading: isDocumentLoading, error: documentError } = useGetMagazineQuery();
 
+  // Go back to documents page
   useEffect(() => {
     const handleGoBackOnKeyDown = (e) => {
       if(checkEventKey(e, config.shortcuts.document.goBack)) {
@@ -87,6 +87,50 @@ const DocumentPage = () => {
 
     return () => {
       document.removeEventListener('keydown', handleGoBackOnKeyDown);
+    }
+  }, [navigate]);
+
+  useEffect(() => {
+    const handleChangeFocus = (e) => {
+      if (e.target.classList.contains('MuiButtonBase-root')) {
+        return;
+      }
+
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const focusableElements = config.shortcuts.document.focusableElementsByEnter;
+
+        const focusable = Array.prototype.filter.call(document.body.querySelectorAll(focusableElements), (element) => element.offsetWidth > 0 || element.offsetHeight || document.activeElement === element);
+
+        const isRowActive = document.activeElement.classList.contains('table--row') || document.activeElement.classList.contains('table--row-cell');
+
+        if (isRowActive) {
+          return;
+        }
+
+        const activeIndex = document.activeElement ? focusable.indexOf(document.activeElement) : 0;
+        const direction = 1;
+
+        if ((activeIndex + direction < focusable.length)) {
+          const nextElement = focusable[activeIndex + direction];
+
+          if (nextElement.classList.contains('table--scroll-container-wrapper')) {
+            const rowsArray = Array.from(nextElement.children || []);
+
+            const firstRow = rowsArray[0];
+
+            firstRow.focus();
+            return;
+          }
+          nextElement.focus();
+        }
+      }
+    }
+
+    document.body.addEventListener('keydown', handleChangeFocus);
+
+    return () => {
+      document.body.removeEventListener('keydown', handleChangeFocus);
     }
   }, []);
 
@@ -129,14 +173,27 @@ const DocumentPage = () => {
               />
             )
           }
+
+          return null;
         })}
+
+        <div className="document--footer">
+          <button
+            type="button"
+            className="btn btn-primary"
+          >
+            Создать
+          </button>
+          <button
+            type="button"
+            className="btn btn-secondary"
+          >
+            Отменить
+          </button>
+        </div>
       </div>
     </div>
   );
-};
-
-DocumentPage.propTypes = {
-  
 };
 
 export default DocumentPage;

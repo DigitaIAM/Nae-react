@@ -1,8 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {useNavigate} from 'react-router-dom';
 import Table from '../../components/Table/Table';
-import Search from '../../components/Search';
 import { checkEventKey } from '../../components/Table/helpers';
 import {useGetMagazinesListQuery} from '../../global/services/magazinesService';
 import config from '../../config';
@@ -33,7 +31,7 @@ const source = {
   ]
 }
 
-const DocumentsPage = props => {
+const DocumentsPage = () => {
   const navigate = useNavigate();
 
   const { data: documentsData, isLoading: isDocumentsDataLoading, error: documentsError } = useGetMagazinesListQuery();
@@ -65,7 +63,6 @@ const DocumentsPage = props => {
           error={documentsError}
           onRowKeyDown={onTableRowKeyDown}
           onRowClick={onRowClick}
-          maxHeight="450"
         />
       </div>
     </div>
