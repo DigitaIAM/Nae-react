@@ -62,7 +62,7 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
     }
   }, [copiedData, isEditable]);
 
-  // Focused first table row and set body scroll
+  // Focused first table row or cell if it is aba and set body scroll
   useEffect(() => {
     if (data && copiedData) {
       const prevFocusedRowIndex = getFromLocalStorage(`${tableId}_focused_row_index`);
@@ -84,19 +84,17 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
       bodyScrollContainerRef.current.scrollTop = prevScrollPosition;
       focusedRow.focus();
 
-      if (isEditable) {
-        if (prevFocusedCellWrapperIndex !== undefined && prevFocusedCellIndex !== undefined) {
-          const cellWrappersArray = Array.from(focusedRow.children || []);
-          const focusedCellWrapper = cellWrappersArray[prevFocusedCellWrapperIndex];
+      if (isCellSelectable) {
+        const cellWrappersArray = Array.from(focusedRow.children || []);
+        const focusedCellWrapper = cellWrappersArray[prevFocusedCellWrapperIndex || 0];
 
-          const cellsArray = Array.from(focusedCellWrapper.children || []);
-          const focusedCell = cellsArray[prevFocusedCellIndex];
+        const cellsArray = Array.from(focusedCellWrapper.children || []);
+        const focusedCell = cellsArray[prevFocusedCellIndex || 0];
 
-          focusedCellWrapperRef.current = focusedCellWrapper;
-          focusedCellRef.current = focusedCell;
+        focusedCellWrapperRef.current = focusedCellWrapper;
+        focusedCellRef.current = focusedCell;
 
-          focusedCell.focus();
-        }
+        focusedCell.focus();
       }
     }
     // eslint-disable-next-line
@@ -264,7 +262,7 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
       }
     }
 
-    if (direction === 'top' || direction === 'down') {
+    if (direction === 'up' || direction === 'down') {
       const directionIndex = direction === 'up' ? -1 : 1;
 
       const rowsArray = Array.from(bodyScrollContainerRef?.current?.children || []);
@@ -294,6 +292,16 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
   const onFocus = (e) => {
     if (e.target.classList.contains('table--row')) {
       focusedRowRef.current = e.target;
+
+      if (isCellSelectable) {
+        const cellWrapper = e.target.children[0];
+        focusedCellWrapperRef.current = cellWrapper;
+
+        const cell = cellWrapper.children[0];
+        focusedCellRef.current = cell;
+
+        cell.focus();
+      }
     }
   }
 
@@ -303,8 +311,9 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
       onRowKeyDownProps(e, itemId);
     }
 
-    // Prevent focus change
-    if (cellData) {
+    // Prevent focus change if cell editable [cellData]
+    // Prevent odd actions when table allow navigation by cells (disable navigation throw rows) [isCellSelectable]
+    if (cellData || isCellSelectable) {
       return;
     }
 
@@ -331,7 +340,7 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
     }
     // Move to the next cell
     if (checkEventKey(e, config.shortcuts.table.cell.moveNext)) {
-      cellNavigate(e, 'right');
+      cellNavigate(e, 'right', isEditable);
     }
 
     // Move to the prev cell

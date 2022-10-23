@@ -39,6 +39,11 @@ export default {
             ctrl: false,
             shift: false,
           },
+          {
+            key: 'Enter',
+            ctrl: false,
+            shift: false,
+          },
         ],
         movePrev: [
           {

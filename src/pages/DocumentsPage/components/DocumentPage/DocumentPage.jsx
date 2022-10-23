@@ -116,7 +116,6 @@ const DocumentPage = () => {
 
           if (nextElement.classList.contains('table--scroll-container-wrapper')) {
             const rowsArray = Array.from(nextElement.children || []);
-
             const firstRow = rowsArray[0];
 
             firstRow.focus();
