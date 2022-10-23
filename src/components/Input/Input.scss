@@ -18,6 +18,10 @@
       font-size: 14px;
       line-height: 19px;
     }
+
+    &:focus {
+      box-shadow: 0 0 10px 0 #3171e2;
+    }
   }
 
   .MuiFormControl-root {

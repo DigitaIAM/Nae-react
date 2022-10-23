@@ -92,7 +92,7 @@ const DocumentPage = () => {
 
   useEffect(() => {
     const handleChangeFocus = (e) => {
-      if (e.target.classList.contains('MuiButtonBase-root')) {
+      if (e.target.classList.contains('MuiButtonBase-root') || e.target.classList.contains('table--row-cell') || e.target.classList.contains('btn')) {
         return;
       }
 
@@ -133,6 +133,15 @@ const DocumentPage = () => {
     }
   }, []);
 
+  // Focus first input of the document
+  useEffect(() => {
+    const focusableElements = config.shortcuts.document.focusableElementsByEnter;
+
+    const [focusedItem] = Array.prototype.filter.call(document.body.querySelectorAll(focusableElements), (element) => element.offsetWidth > 0 || element.offsetHeight || document.activeElement === element);
+
+    focusedItem.focus();
+  }, []);
+
   return (
     <div className="document-page-wrapper">
       <div className="document-page--content">
@@ -169,6 +178,7 @@ const DocumentPage = () => {
                 maxHeight="450"
                 isCellSelectable
                 isEditable
+                savePosition={false}
               />
             )
           }

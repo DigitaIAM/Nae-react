@@ -6,7 +6,7 @@ import { writeToLocalStorage, getFromLocalStorage } from '../../global/helpers';
 import config from '../../config';
 import './Table.scss';
 
-const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, isCellSelectable, isEditable, onRowKeyDown: onRowKeyDownProps, onRowClick: onRowClickProps }) => {
+const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, isCellSelectable, isEditable, savePosition, onRowKeyDown: onRowKeyDownProps, onRowClick: onRowClickProps }) => {
   const bodyScrollContainerRef = useRef();
   const focusedRowRef = useRef();
   const focusedCellWrapperRef = useRef();
@@ -64,7 +64,7 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
 
   // Focused first table row or cell if it is aba and set body scroll
   useEffect(() => {
-    if (data && copiedData) {
+    if (data && copiedData && savePosition) {
       const prevFocusedRowIndex = getFromLocalStorage(`${tableId}_focused_row_index`);
       const prevFocusedCellWrapperIndex = getFromLocalStorage(`${tableId}_focused_cell_wrapper_index`);
       const prevFocusedCellIndex = getFromLocalStorage(`${tableId}_focused_cell_index`);
@@ -256,8 +256,24 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
           focusedCellRef.current = focusedCell;
           focusedCell.focus();
         } else if (rowJump) {
-          rowNavigate(event, 'down');
-          changeNavigationToCells(event, true);
+          const rowsArray = Array.from(bodyScrollContainerRef.current.children || []);
+          const indexOfFocusedRow = rowsArray.indexOf(focusedRowRef.current);
+
+          if (indexOfFocusedRow + 1 < rowsArray.length) {
+            rowNavigate(event, 'down');
+          } else if (event.key === 'Enter' && isEditable) {
+            const focusableElements = config.shortcuts.document.focusableElementsByTab;
+
+            const focusable = Array.prototype.filter.call(document.body.querySelectorAll(focusableElements), (element) => element.offsetWidth > 0 || element.offsetHeight || document.activeElement === element);
+
+            const activeIndex = focusable.indexOf(bodyScrollContainerRef.current);
+
+            if ((activeIndex + 1 < focusable.length)) {
+              const nextElement = focusable[activeIndex + 1];
+
+              nextElement.focus();
+            }
+          }
         }
       }
     }
@@ -560,6 +576,7 @@ Table.propTypes = {
   maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   isCellSelectable: PropTypes.bool,
   isEditable: PropTypes.bool,
+  savePosition: PropTypes.bool,
   source: PropTypes.shape({
     columns: PropTypes.arrayOf(PropTypes.shape({})),
   }).isRequired,
@@ -574,6 +591,7 @@ Table.defaultProps = {
   maxHeight: null,
   isCellSelectable: false,
   isEditable: false,
+  savePosition: true,
   loading: false,
   error: null,
   onRowKeyDown: null,
