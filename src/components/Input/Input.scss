@@ -21,6 +21,7 @@
 
     &:focus {
       box-shadow: 0 0 10px 0 #3171e2;
+      border: 1px solid #3171e2;
     }
   }
 
@@ -33,7 +34,8 @@
       border-radius: 4px;
 
       &.Mui-focused {
-
+        box-shadow: 0 0 10px 0 #3171e2;
+        border: 1px solid #3171e2;
       }
 
       .MuiInputBase-input {

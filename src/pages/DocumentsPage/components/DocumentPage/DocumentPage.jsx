@@ -7,6 +7,7 @@ import Input from '../../../../components/Input';
 import config from '../../../../config';
 import {checkEventKey} from '../../../../components/Table/helpers';
 import './DocumentPage.scss';
+import Select from '../../../../components/Select';
 
 const source = [
   [
@@ -149,16 +150,24 @@ const DocumentPage = () => {
           if (isArray(item)) {
             return (
               <div className="input-group">
-                {item.map((input) => (
-                  <Input
-                    type={input.type}
-                    placeholder={input.label}
-                    style={{
-                      flex: `0 1 ${100 / item.length}%`,
-                      maxWidth: `${100 / item.length}%`,
-                    }}
-                  />
-                ))}
+                {item.map((input) => {
+                  if (input.type === 'combobox') {
+                    return (
+                      <Select context={input.context} />
+                    )
+                  } else {
+                    return (
+                      <Input
+                        type={input.type}
+                        placeholder={input.label}
+                        style={{
+                          flex: `0 1 ${100 / item.length}%`,
+                          maxWidth: `${100 / item.length}%`,
+                        }}
+                      />
+                    )
+                  }
+                })}
               </div>
             );
           }

@@ -5,6 +5,7 @@ import rootReducer from './rootReducer';
 import rootSaga from './rootSaga';
 
 import { magazinesService } from './global/services/magazinesService';
+import { metadataService } from './global/services/metadataService';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -13,7 +14,8 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
       .concat(sagaMiddleware)
-      .concat(magazinesService.middleware),
+      .concat(magazinesService.middleware)
+      .concat(metadataService.middleware),
 });
 
 setupListeners(store.dispatch);
