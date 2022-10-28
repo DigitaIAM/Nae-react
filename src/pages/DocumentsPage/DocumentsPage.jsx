@@ -38,6 +38,7 @@ const DocumentsPage = () => {
 
   const onTableRowKeyDown = (e, id) => {
     e.preventDefault();
+    e.stopPropagation();
 
     if(checkEventKey(e, config.shortcuts.table.row.open)) {
       navigate(`/documents/${id}`);

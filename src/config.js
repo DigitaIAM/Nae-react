@@ -383,7 +383,12 @@ export default {
           key: 'Enter',
           ctrl: false,
           shift: false,
-        }
+        },
+        editCancel: {
+          key: 'Escape',
+          ctrl: false,
+          shift: false,
+        },
       }
     },
   },

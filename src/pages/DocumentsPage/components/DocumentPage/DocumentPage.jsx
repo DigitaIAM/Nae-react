@@ -122,6 +122,7 @@ const DocumentPage = () => {
             firstRow.focus();
             return;
           }
+
           nextElement.focus();
         }
       }
@@ -139,6 +140,8 @@ const DocumentPage = () => {
     const focusableElements = config.shortcuts.document.focusableElementsByEnter;
 
     const [focusedItem] = Array.prototype.filter.call(document.body.querySelectorAll(focusableElements), (element) => element.offsetWidth > 0 || element.offsetHeight || document.activeElement === element);
+
+    console.log(focusedItem);
 
     focusedItem.focus();
   }, []);

@@ -20,7 +20,9 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
     cellWrapperIndex: undefined,
     cellIndex: undefined,
   });
-  const [cellData, setCellData] = useState(null);
+
+  const [prevCellData, setPrevCellData] = useState(null);
+  const [currentCellData, setCurrentCellData] = useState(null);
 
   // Make the deep copy of the data array
   useEffect(() => {
@@ -155,7 +157,7 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
     setBodyScrollWidth(bodyScrollContainerRef.current?.parentNode?.offsetWidth - bodyScrollContainerRef.current?.clientWidth);
   }, []);
 
-  const cellSwitchToEditableMode = (cellValue) => {
+  const cellSwitchToEditableMode = () => {
     if (editableState?.cellIndex === undefined && editableState?.rowIndex === undefined && editableState?.cellWrapperIndex === undefined) {
       const rowsArray = Array.from(bodyScrollContainerRef?.current?.children || []);
       const indexOfFocusedRow = rowsArray.indexOf(focusedRowRef?.current);
@@ -175,7 +177,7 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
         cellIndex: indexOfFocusedCell,
       });
 
-      setCellData(cellValue);
+      setCurrentCellData('');
     }
   };
 
@@ -329,7 +331,7 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
 
     // Prevent focus change if cell editable [cellData]
     // Prevent odd actions when table allow navigation by cells (disable navigation throw rows) [isCellSelectable]
-    if (cellData || isCellSelectable) {
+    if (currentCellData || isCellSelectable) {
       return;
     }
 
@@ -349,9 +351,9 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
     }
   }
 
-  const onCellKeyDown = (e, cellValue) => {
+  const onCellKeyDown = (e) => {
     // Prevent focus change
-    if (cellData) {
+    if (currentCellData) {
       return;
     }
     // Move to the next cell
@@ -376,7 +378,7 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
 
     // Switch cell to editable mode.
     if (checkEventKey(e, config.shortcuts.table.cell.editStart) && isEditable) {
-      cellSwitchToEditableMode(cellValue);
+      cellSwitchToEditableMode();
     }
   }
 
@@ -403,6 +405,7 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
   const onInputKeyDown = (e, cellKey) => {
     if (checkEventKey(e, config.shortcuts.table.cell.editEnd)) {
       e.preventDefault();
+      e.stopPropagation();
 
       const rowsArray = Array.from(bodyScrollContainerRef.current.children || []);
       const cellWrappersArray = Array.from(rowsArray[editableState.rowIndex]?.children || []);
@@ -410,7 +413,7 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
 
       setCopiedData((prevData) => {
         const clonedData = cloneDeep(prevData);
-        return updateObjectValue(clonedData, `[${editableState.rowIndex}].${cellKey}`, () => cellData);
+        return updateObjectValue(clonedData, `[${editableState.rowIndex}].${cellKey}`, () => currentCellData);
       });
 
       focusedRowRef.current = rowsArray[editableState.rowIndex];
@@ -423,14 +426,39 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
         cellIndex: undefined,
       });
 
-      setCellData(null);
+      setCurrentCellData(null);
+      setPrevCellData(null);
 
       cellNavigate(e, 'right', true);
+    }
+
+    if(checkEventKey(e, config.shortcuts.table.cell.editCancel)) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const rowsArray = Array.from(bodyScrollContainerRef.current.children || []);
+      const cellWrappersArray = Array.from(rowsArray[editableState.rowIndex]?.children || []);
+      const cellsArray = Array.from(cellWrappersArray[editableState.cellWrapperIndex]?.children || []);
+
+      focusedRowRef.current = rowsArray[editableState.rowIndex];
+      focusedCellWrapperRef.current = cellWrappersArray[editableState.cellWrapperIndex];
+      focusedCellRef.current = cellsArray[editableState.cellIndex];
+
+      setEditableState({
+        rowIndex: undefined,
+        cellWrapperIndex: undefined,
+        cellIndex: undefined,
+      });
+
+      setCurrentCellData(null);
+      setPrevCellData(null);
+
+      focusedCellRef.current.focus();
     }
   }
 
   const handleChangeCellValue = (e) => {
-    setCellData(e.target.value);
+    setCurrentCellData(e.target.value);
   }
 
   const onTableBodyScroll = (e) => {
@@ -529,16 +557,14 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
                                   flex: `0 1 ${100 / column.dataKey.length}%`,
                                   maxWidth: `${100 / column.dataKey.length}%`,
                                 }}
-                                onKeyDown={(e) => {
-                                  onCellKeyDown(e, getObjectValue(item, cellDataKey))
-                                }}
+                                onKeyDown={onCellKeyDown}
                                 onClick={onCellClick}
                               >
                                 {editableState.cellIndex === cellIndex && editableState.cellWrapperIndex === cellWrapperIndex && editableState.rowIndex === rowIndex ? (
                                   <input
                                     className="table--row-cell__input"
                                     type="text"
-                                    value={cellData}
+                                    value={currentCellData}
                                     onChange={handleChangeCellValue}
                                     onKeyDown={(e) => {
                                       onInputKeyDown(e, cellDataKey);
