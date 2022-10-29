@@ -58,6 +58,7 @@ const DocumentsPage = () => {
         <Table
           idProperty="_id"
           tableId="documents_table"
+          maxHeight="calc(100vh - 65px - 65px - 65px - 14px)"
           source={source}
           data={documentsData}
           loading={isDocumentsDataLoading}

@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import { get as getObjectValue, cloneDeep, update as updateObjectValue } from 'lodash';
+import Autocomplete from '../Autocomplete';
 import { checkEventKey, createEmptyObjectCopy, isObjectEmpty } from './helpers';
 import { writeToLocalStorage, getFromLocalStorage } from '../../global/helpers';
 import config from '../../config';
@@ -21,8 +22,8 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
     cellIndex: undefined,
   });
 
-  const [prevCellData, setPrevCellData] = useState(null);
   const [currentCellData, setCurrentCellData] = useState(null);
+  const [autocompleteValues, setAutocompleteValues] = useState([]);
 
   // Make the deep copy of the data array
   useEffect(() => {
@@ -106,7 +107,7 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
   useEffect(() => {
     if (editableState.rowIndex !== undefined && editableState.cellIndex !== undefined && editableState.cellWrapperIndex !== undefined) {
       if (focusedCellRef.current) {
-        const input = focusedCellRef.current.querySelector('input.table--row-cell__input');
+        const input = focusedCellRef.current.querySelector('input.autocomplete__input');
         input.focus();
       }
     }
@@ -155,6 +156,27 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
   useEffect(() => {
     // eslint-disable-next-line
     setBodyScrollWidth(bodyScrollContainerRef.current?.parentNode?.offsetWidth - bodyScrollContainerRef.current?.clientWidth);
+  }, []);
+
+  // Handle click outside editable cell
+  useEffect(() => {
+    const onClick = (e) => {
+      if ((e.target.classList.contains('table--row-cell') && e.target !== focusedCellRef.current) || (e.target.closest('.table--row-cell') !== focusedCellRef.current)) {
+        setEditableState({
+          rowIndex: undefined,
+          cellWrapperIndex: undefined,
+          cellIndex: undefined,
+        });
+
+        setCurrentCellData(null);
+      }
+    }
+
+    document.addEventListener('click', onClick);
+
+    return () => {
+      document.removeEventListener('click', onClick);
+    }
   }, []);
 
   const cellSwitchToEditableMode = () => {
@@ -383,6 +405,16 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
   }
 
   const onCellClick = (e) => {
+    if (e.target !== focusedCellRef.current) {
+      setEditableState({
+        rowIndex: undefined,
+        cellWrapperIndex: undefined,
+        cellIndex: undefined,
+      });
+
+      setCurrentCellData(null);
+    }
+
     if (isEditable) {
       const focusedCell = e.target.classList.contains('content-container') ? e.target.parentElement.parentElement : e.target.parentElement;
       const focusedCellWrapper = focusedCell.parentElement;
@@ -402,7 +434,7 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
     }
   }
 
-  const onInputKeyDown = (e, cellKey) => {
+  const onInputKeyDown = (e, cellKey, selectedValue) => {
     if (checkEventKey(e, config.shortcuts.table.cell.editEnd)) {
       e.preventDefault();
       e.stopPropagation();
@@ -413,7 +445,7 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
 
       setCopiedData((prevData) => {
         const clonedData = cloneDeep(prevData);
-        return updateObjectValue(clonedData, `[${editableState.rowIndex}].${cellKey}`, () => currentCellData);
+        return updateObjectValue(clonedData, `[${editableState.rowIndex}].${cellKey}`, () => selectedValue || currentCellData);
       });
 
       focusedRowRef.current = rowsArray[editableState.rowIndex];
@@ -426,8 +458,15 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
         cellIndex: undefined,
       });
 
+      setAutocompleteValues((prev) => ([
+        ...prev,
+        {
+          label: currentCellData,
+          value: currentCellData,
+        }
+      ]));
+
       setCurrentCellData(null);
-      setPrevCellData(null);
 
       cellNavigate(e, 'right', true);
     }
@@ -451,14 +490,13 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
       });
 
       setCurrentCellData(null);
-      setPrevCellData(null);
 
       focusedCellRef.current.focus();
     }
   }
 
-  const handleChangeCellValue = (e) => {
-    setCurrentCellData(e.target.value);
+  const handleChangeCellValue = (value) => {
+    setCurrentCellData(value);
   }
 
   const onTableBodyScroll = (e) => {
@@ -522,7 +560,8 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
                     className="table--scroll-container-wrapper"
                     tabIndex={0}
                     style={{
-                      maxHeight: maxHeight ? `${maxHeight}px` : 'calc(100vh - 65px - 65px - 65px - 14px)',
+                      maxHeight: maxHeight ? `${maxHeight}` : 'unset',
+                      overflowY: maxHeight ? 'auto' : 'visible',
                     }}
                     onScroll={onTableBodyScroll}
                   >
@@ -561,13 +600,12 @@ const Table = ({ idProperty, tableId, data, source, loading, error, maxHeight, i
                                 onClick={onCellClick}
                               >
                                 {editableState.cellIndex === cellIndex && editableState.cellWrapperIndex === cellWrapperIndex && editableState.rowIndex === rowIndex ? (
-                                  <input
-                                    className="table--row-cell__input"
-                                    type="text"
+                                  <Autocomplete
                                     value={currentCellData}
-                                    onChange={handleChangeCellValue}
-                                    onKeyDown={(e) => {
-                                      onInputKeyDown(e, cellDataKey);
+                                    options={autocompleteValues}
+                                    onInputChange={handleChangeCellValue}
+                                    onKeyDown={(e, selectedValue) => {
+                                      onInputKeyDown(e, cellDataKey, selectedValue);
                                     }}
                                   />
                                 ) : (

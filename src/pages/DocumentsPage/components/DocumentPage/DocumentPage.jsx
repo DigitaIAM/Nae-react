@@ -141,8 +141,6 @@ const DocumentPage = () => {
 
     const [focusedItem] = Array.prototype.filter.call(document.body.querySelectorAll(focusableElements), (element) => element.offsetWidth > 0 || element.offsetHeight || document.activeElement === element);
 
-    console.log(focusedItem);
-
     focusedItem.focus();
   }, []);
 
@@ -156,20 +154,24 @@ const DocumentPage = () => {
                 {item.map((input) => {
                   if (input.type === 'combobox') {
                     return (
-                      <Select context={input.context} />
-                    )
-                  } else {
-                    return (
-                      <Input
-                        type={input.type}
-                        placeholder={input.label}
-                        style={{
-                          flex: `0 1 ${100 / item.length}%`,
-                          maxWidth: `${100 / item.length}%`,
-                        }}
+                      <Select
+                        key={item.id}
+                        context={input.context}
                       />
                     )
                   }
+
+                  return (
+                    <Input
+                      key={item.id}
+                      type={input.type}
+                      placeholder={input.label}
+                      style={{
+                        flex: `0 1 ${100 / item.length}%`,
+                        maxWidth: `${100 / item.length}%`,
+                      }}
+                    />
+                  )
                 })}
               </div>
             );
@@ -187,7 +189,6 @@ const DocumentPage = () => {
                 data={(documentData || [])[item.id]}
                 loading={isDocumentLoading}
                 error={documentError}
-                maxHeight="450"
                 isCellSelectable
                 isEditable
                 savePosition={false}

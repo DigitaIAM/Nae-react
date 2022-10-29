@@ -384,11 +384,18 @@ export default {
           ctrl: false,
           shift: false,
         },
-        editCancel: {
-          key: 'Escape',
-          ctrl: false,
-          shift: false,
-        },
+        editCancel: [
+          {
+            key: 'Escape',
+            ctrl: false,
+            shift: false,
+          },
+          {
+            key: 'Tab',
+            ctrl: false,
+            shift: false,
+          }
+        ],
       }
     },
   },
