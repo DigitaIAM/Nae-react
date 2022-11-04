@@ -1,0 +1,65 @@
+@import 'src/global/styles/colors';
+
+.input-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .input {
+    width: 100%;
+    border: 1px solid $input-border;
+    border-radius: 4px;
+    padding: 12px;
+    color: $input-color;
+
+    &::placeholder {
+      color: $input-placeholder-color;
+      font-size: 14px;
+      line-height: 19px;
+    }
+
+    &:focus {
+      box-shadow: 0 0 10px 0 #3171e2;
+      border: 1px solid #3171e2;
+    }
+  }
+
+  .MuiFormControl-root {
+    width: 100%;
+    border: none;
+
+    .MuiInputBase-root {
+      border: 1px solid $input-border;
+      border-radius: 4px;
+
+      &.Mui-focused {
+        box-shadow: 0 0 10px 0 #3171e2;
+        border: 1px solid #3171e2;
+      }
+
+      .MuiInputBase-input {
+        padding: 12px;
+        color: $input-color;
+
+        &::placeholder {
+          color: $input-placeholder-color;
+          font-size: 14px;
+          line-height: 19px;
+        }
+      }
+
+      .MuiInputAdornment-root {
+        .MuiButtonBase-root {
+          .MuiSvgIcon-root {
+            color: $input-icon-color;
+          }
+        }
+      }
+
+      .MuiOutlinedInput-notchedOutline {
+        border: none;
+      }
+    }
+  }
+}

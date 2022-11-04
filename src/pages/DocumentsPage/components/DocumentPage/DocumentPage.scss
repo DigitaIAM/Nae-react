@@ -1,0 +1,28 @@
+@import 'src/global/styles/colors';
+
+.document-page-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  .document-page--content {
+    width: 100%;
+
+    .input-group {
+      width: 100%;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: 30px;
+    }
+
+    .document--footer {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 25px;
+      margin-top: 35px;
+    }
+  }
+}

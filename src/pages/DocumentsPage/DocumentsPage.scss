@@ -1,0 +1,21 @@
+@import 'src/global/styles/colors';
+
+.documents-page-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  .documents-page--header {
+    width: 100%;
+    background-color: $header-background;
+    padding: 15px 25px;
+  }
+
+  .documents-page--body {
+    width: 100%;
+
+    .documents-page--content {
+      padding: 50px 65px;
+    }
+  }
+}

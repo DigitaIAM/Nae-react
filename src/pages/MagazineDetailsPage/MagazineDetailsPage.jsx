@@ -7,7 +7,9 @@ import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import KeyboardNavigation from '../../components/KeyboardNavigation';
 // import {useGetMagazineQuery} from '../../global/services/magazinesService';
+import Input from '../../components/Input';
 import { compareRows } from './helpers';
 import './MagazineDetailsPage.scss';
 
@@ -250,76 +252,76 @@ const MagazineDetailsPage = () => {
   }, 0);
 
   return (
-    <div className="magazine-page--wrapper">
-      <div className="document--header">
-        <p>Подразделение</p>
-        <p>Автор</p>
-      </div>
-      <h1 className="document--name">Название документа № номет от дата</h1>
-      <div className="document--body">
-        <div className="body--information">
-          <input type="text" className="information--input w-50" placeholder="Контрагент" />
-          <input type="text" className="information--input w-50" placeholder="Договор" />
+    <KeyboardNavigation gridRef={gridRef}>
+      <div className="magazine-page--wrapper">
+        <div className="document--header">
+          <p>Подразделение</p>
+          <p>Автор</p>
         </div>
-        <div className="body--information">
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker
-              className="information--input w-100"
-              value={dataSource.date}
-              onChange={(newValue) => {
-                setDataSource((predData) => ({
-                  ...predData,
-                  date: newValue,
-                }));
-              }}
-              renderInput={(params) => <TextField {...params} />}
+        <h1 className="document--name">Название документа № номет от дата</h1>
+        <div className="document--body">
+          <div className="body--information">
+            <Input
+              col={6}
+              type="text"
+              placeholder="Контрагент"
             />
-          </LocalizationProvider>
-        </div>
-        <ReactDataGrid
-          className="body--data-grid"
-          style={{ minHeight: `${(dataSource.goods.length + 1) * 40 + 81}px`}}
-          idProperty="_id"
-          editable
-          autoFocusOnEditComplete
-          onReady={setGridRef}
-          onEditComplete={onEditComplete}
-          // loading={isLoading || isFetching || (!data && !error)}
-          groups={MAGAZINE_DETAILS_PAGE.table.groups}
-          columns={MAGAZINE_DETAILS_PAGE.table.columns}
-          dataSource={[
-            ...(dataSource?.goods || []),
-            MAGAZINE_DETAILS_PAGE.table.emptyRow,
-          ]}
-        />
-        <div className="body--information">
-          <p className="sum-info">Итого: {sumTotal} {dataSource.goods[0].cost.currency}</p>
-        </div>
-        <div className="body--information">
-          <textarea
-            className="information--input w-100"
-            placeholder="Комментарий"
-            value={comment}
-            onChange={handleChangeComment}
+            <Input
+              col={6}
+              type="text"
+              placeholder="Договор"
+            />
+          </div>
+          <div className="body--information">
+            <Input
+              type="date"
+            />
+          </div>
+          <ReactDataGrid
+            className="body--data-grid"
+            style={{ minHeight: `${(dataSource.goods.length + 1) * 40 + 81}px`}}
+            idProperty="_id"
+            editable
+            autoFocusOnEditComplete
+            onReady={setGridRef}
+            onEditComplete={onEditComplete}
+            // loading={isLoading || isFetching || (!data && !error)}
+            groups={MAGAZINE_DETAILS_PAGE.table.groups}
+            columns={MAGAZINE_DETAILS_PAGE.table.columns}
+            dataSource={[
+              ...(dataSource?.goods || []),
+              MAGAZINE_DETAILS_PAGE.table.emptyRow,
+            ]}
           />
-        </div>
-        <div className="document--footer">
-          <button
-            type="button"
-            className="footer--btn"
-          >
-            Cоздать
-          </button>
-          <Link
-            type="button"
-            className="footer--btn"
-            to="/magazines"
-          >
-            Отменить
-          </Link>
+          <div className="body--information">
+            <p className="sum-info">Итого: {sumTotal} {dataSource.goods[0].cost.currency}</p>
+          </div>
+          <div className="body--information">
+            <Input
+              type="textarea"
+              placeholder="Комментарий"
+            />
+          </div>
+          <div className="document--footer">
+            <button
+              type="button"
+              aria-navigable={false}
+              className="footer--btn"
+            >
+              Cоздать
+            </button>
+            <Link
+              type="button"
+              aria-navigable={false}
+              className="footer--btn"
+              to="/magazines"
+            >
+              Отменить
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
+    </KeyboardNavigation>
   );
 };
 
