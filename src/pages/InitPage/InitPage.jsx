@@ -1,15 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {Routes as Switch, Route, NavLink, useLocation} from 'react-router-dom';
 import Search from '../../components/Search';
-import MagazinesPage from '../MagazinesPage';
-import MagazineDetailsPage from '../MagazineDetailsPage';
 import DocumentsPage from '../DocumentsPage';
 import DocumentPage from '../DocumentsPage/components/DocumentPage';
 import { routes } from './routes';
 import './InitPage.scss';
 
-const InitPage = props => {
+const InitPage = () => {
   const location = useLocation();
 
   return (
@@ -47,8 +44,6 @@ const InitPage = props => {
           <Switch>
             <Route exact path="/documents" element={<DocumentsPage />} />
             <Route exact path="/documents/:id" element={<DocumentPage />} />
-            <Route exact path="/magazines" element={<MagazinesPage />} />
-            <Route exact path="/magazines/:id" element={<MagazineDetailsPage />} />
           </Switch>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import React from 'react';
 import { ImFilesEmpty } from 'react-icons/im';
 import { BsBookmarks } from 'react-icons/bs';
 import { MdOutlineHome } from 'react-icons/md';
